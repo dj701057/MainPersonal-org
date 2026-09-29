@@ -24,6 +24,30 @@ Your DX project follows this structure:
 
 See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm).
 
+## Nightly Apex Tests
+
+Full guide with diagrams: [Nightly Apex Tests — Implementation & Dev Org Setup](https://claude.ai/code/artifact/c13b9334-f3ff-411b-96a0-d3d46882f1e7)
+
+This repo uses the single-job setup from that guide (Option B). Every night at 22:00 IST, GitHub Actions logs in to the org with a certificate (JWT). It runs all local Apex tests with coverage and emails an HTML report.
+
+| File | Role |
+| --- | --- |
+| [`.github/workflows/nightly-apex-tests.yml`](.github/workflows/nightly-apex-tests.yml) | Schedule, JWT login, test run, artifact upload, email |
+| [`.github/ci/build-apex-report.py`](.github/ci/build-apex-report.py) | Turns the `sf apex run test` JSON into `test-results/` HTML, text and summary files |
+| [`.github/ci/send-apex-report-email.py`](.github/ci/send-apex-report-email.py) | Sends the report over Gmail SMTP with 3 attempts |
+
+Set these under **Settings → Secrets and variables → Actions**:
+
+- Secrets: `SF_JWT_CLIENT_ID`, `SF_JWT_USERNAME`, `SF_JWT_PRIVATE_KEY`, `SMTP_CONNECTION_URL`
+- Variables: `SMTP_FROM`, `DEV_TEAM_EMAILS`, and optionally `SF_INSTANCE_URL` (default `https://login.salesforce.com`)
+
+To run the same thing locally:
+
+```bash
+sf apex run test --test-level RunLocalTests --code-coverage --result-format json --wait 60 --target-org MainPersonalOrg > test-results/apex-test-result.json
+python .github/ci/build-apex-report.py test-results
+```
+
 ## Get Started
 
 Ready to start developing? The [Get Started with Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_get_started_dx.htm) guide walks you through your first project, from creating a scratch org to creating a simple Apex class or LWC to deploying your code to a sandbox.
