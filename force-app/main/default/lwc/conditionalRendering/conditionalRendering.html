@@ -1,0 +1,32 @@
+<template>
+    <lightning-card  variant="Narrow"  title="lwc:if ,Lwc:else" icon-name="custom:custom12">
+        <p class="slds-p-horizontal_small">
+            <lightning-button variant="Brand" label="click Here" title="Primary action" onclick={handleClick}>
+            </lightning-button>
+        </p>
+
+        <p slot="footer">
+            <template lwc:if={isVisible}>
+                You just hit button!!!
+            </template>
+            <template lwc:else>
+                please hit 'click Here' Button !!!
+            </template>
+        </p>
+    </lightning-card>
+    <lightning-card  variant="Narrow"  title="Hello" icon-name="custom:custom12">
+        <p class="slds-p-horizontal_small">
+            <lightning-button variant="Brand" label="click Here" title="Primary action" onclick2={handleClick}>
+            </lightning-button>
+        </p>
+
+        <p slot="footer">
+            <template if:true={isVisible}>
+                You just hit button!!!
+            </template>
+            <template if:false={isVisible}>
+                please hit 'click Here' Button !!!
+            </template>
+        </p>
+    </lightning-card>
+</template>

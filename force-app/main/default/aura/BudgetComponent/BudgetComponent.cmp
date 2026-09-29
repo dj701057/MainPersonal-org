@@ -1,0 +1,431 @@
+<aura:component controller="BudgetComponentController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+        <aura:attribute name="SpinnerSwitch" type="boolean" default="false"/>
+        <aura:attribute name="userOptions" type="List" default="[]" />
+        <aura:attribute name="selectedUserId" type="String" />
+        <aura:attribute name="currencyValue" type="String" />
+        <aura:attribute name="startDateValue" type="Date" />
+        <aura:attribute name="finishDateValue" type="Date" />
+        <aura:handler name="init" value="{!this}" action="{!c.init}" />
+        <lightning:card>
+            <aura:if isTrue="{!v.SpinnerSwitch}">
+                <div class="exampleHolder">
+                    <lightning:spinner alternativeText="Loading" size="large" />
+                </div>
+            </aura:if>
+            
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col">
+                    <lightning:combobox
+                                        name="selectUser"
+                                        label="Owner Name/Customer Owner"
+                                        placeholder="Select a user"
+                                        variant="label-inline"
+                                        options="{!v.userOptions}"
+                                        value="{!v.selectedUserId}"
+                                        onchange="{!c.handleSelection}"
+                                        />
+                    
+                </div>
+                
+                <!-- Currency Field -->
+                <div class="slds-col">
+                    
+                        <lightning:input
+                                        name="currency"
+                                        label="Currency"
+                                        type="text"
+                                        value="{!v.currencyValue}"
+                                        />
+                    
+                </div>
+                
+                <!-- Start Date Field -->
+                <div class="slds-col">
+                    
+                        <lightning:input
+                                        name="startDate"
+                                        label="Start Date"
+                                        type="date"
+                                        value="{!v.startDateValue}"
+                                        />
+                    
+                </div>
+                
+                <!-- Finish Date Field -->
+                <div class="slds-col">
+                
+                        <lightning:input
+                                        name="finishDate"
+                                        label="Finish Date"
+                                        type="date"
+                                        value="{!v.finishDateValue}"
+                                        />
+                    
+                </div>  
+            </div>
+            
+            <div aura:id="tblData" >
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="text-align:Center;"></th>
+                                <th style="text-align:Center;">Apr</th>
+                                <th style="text-align:Center;">May</th>
+                                <th style="text-align:Center;">Jun</th>
+                                <th style="text-align:Center;">Jul</th>
+                                <th style="text-align:Center;">Aug</th>
+                                <th style="text-align:Center;">Sep</th>
+                                <th style="text-align:Center;">Oct</th>
+                                <th style="text-align:Center;">Nov</th>
+                                <th style="text-align:Center;">Dec</th>
+                                <th style="text-align:Center;">Jan</th>
+                                <th style="text-align:Center;">Feb</th>
+                                <th style="text-align:Center;">Mar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                </table>
+                        <lightning:accordion aura:id="accordion" >
+                            <lightning:accordionSection name="A" label="Client Rating">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align:Center;">Platinum</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                                <td style="text-align:Center;">40000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                            </lightning:accordionSection>
+                            <lightning:accordionSection name="B" label="Trade Category">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                            <tr>
+                                <td>Architect</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                                <td>40000</td>
+                            </tr>
+                        </tbody>
+                                </table>
+                            </lightning:accordionSection>
+                        </lightning:accordion>
+                
+                
+                    
+                            <!-- Aura Iteration for Accordion -->
+                            <lightning:accordion aura:id="accordion" >
+                            <lightning:accordionSection name="A" label="Client Rating">
+                                <table>
+                                <tbody>
+                                <!-- Aura Iteration -->
+                                <tr>
+                                    <td>Platinum</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                </tr>
+                                    </tbody>
+                                </table>
+                            </lightning:accordionSection>
+                            <lightning:accordionSection name="B" label="Trade Category">
+                                <table>
+                                    <tbody>
+                                <tr>
+                                    <td>Architect</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                </tr>
+                                    </tbody>
+                                </table>
+                            </lightning:accordionSection>
+                            <lightning:accordionSection name="C" label="Industry">
+                                <table>
+                                    <tbody>
+                                <tr>
+                                    <td>Machinery</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                    <td>40000</td>
+                                </tr>
+                                        </tbody>
+                                </table>
+                            </lightning:accordionSection>
+                        </lightning:accordion>
+            </div>
+            <br/><br/><br/>
+            
+            <!--<div style="padding-left:80px;" class="slds-grid">
+                <div class="slds-col">
+                    <span></span>
+                </div>
+                <div class="slds-col">
+                    <span>Apr</span>
+                </div>
+                <div class="slds-col">
+                    <span>May</span>
+                </div>
+                <div class="slds-col">
+                    <span>June</span>
+                </div>
+                <div class="slds-col">
+                    <span>July</span>
+                </div>
+                <div class="slds-col">
+                    <span>Aug</span>
+                </div>
+                <div class="slds-col">
+                    <span>Sept</span>
+                </div>
+                <div class="slds-col">
+                    <span>Oct</span>
+                </div>
+                <div class="slds-col">
+                    <span>Nov</span>
+                </div>
+                <div class="slds-col">
+                    <span>Dec</span>
+                </div>
+                <div class="slds-col">
+                    <span>Jan</span>
+                </div>
+                <div class="slds-col">
+                    <span>Feb</span>
+                </div>
+                <div class="slds-col">
+                    <span>Mar</span>
+                </div>
+            </div>
+            
+            
+            <lightning:accordion aura:id="accordion" >
+                <lightning:accordionSection name="A" label="Client Rating">
+                    <div class="slds-grid">
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>Platinum</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                    </div>
+                </lightning:accordionSection>
+                <lightning:accordionSection name="B" label="Trade Category">
+                    <div class="slds-grid">
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>Architect</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                    </div>
+                </lightning:accordionSection>
+                <lightning:accordionSection name="C" label="Industry">
+                    <div class="slds-grid">
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>Machinery</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                        <div class="slds-col" style="text-align:Center;">
+                            <span>40000</span>
+                        </div>
+                    </div>
+                </lightning:accordionSection>
+            </lightning:accordion>-->
+        </lightning:card>
+        
+    </aura:component>

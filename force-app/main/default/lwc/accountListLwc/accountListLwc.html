@@ -1,0 +1,133 @@
+<template>
+    <lightning-card title="Account List">
+        <div class="slds-p-around_xx-small">
+            <lightning-datatable
+                key-field="Id"
+                data={lstAccounts}
+                columns={lstColumns}
+                hide-checkbox-column="true"
+                onrowaction={handelRowAction}>
+                    
+            </lightning-datatable>
+        </div>
+        
+        <!--Modal Box Start-->
+            <template if:true={bShowModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="modalSection slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                <!--Modal Header Start-->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                    <lightning-icon variant="inverse" onclick={closeModal} alternative-text="close" icon-name="utility:close" size="small"></lightning-icon>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Create New Contact</h2>
+                </header>
+                <!--Modal Body Start-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-wrap slds-grid">
+                        <table>                
+                            <tr>
+                                <td style="color:white;">12345555555555555555555555555 </td><td style="text-align: right;"></td><td>
+                        <select class="slds-select" name = "optionSelect" onchange={conHandleChange} >
+                            <option value="Choose One..">Choose One..</option>
+                            <option value="Account">Account</option>
+                            <option value="Contact">Contact</option>
+                            <option value="Task">Task</option>
+                        </select>
+                        </td></tr></table>
+                    
+                        <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium">
+                            <p><lightning-input label="FirstName" type="text" value={conObFirstName} name="conFirstName" onchange={conHandleChange}></lightning-input></p>
+                        </div>
+                        <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium">
+                            <p><lightning-input label="LastName" type="text" value={conObLastName} name="conLastName" onchange={conHandleChange}></lightning-input></p>
+                        </div>         
+                        <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium">
+                            <p><lightning-input label="Email" type="email" value={conObEmail} name="conEmail" onchange={conHandleChange}></lightning-input></p>
+                        </div>         
+                        <div class="slds-col slds-size_6-of-12 slds-p-horizontal--small slds-m-bottom--medium">
+                            <p><lightning-input label="Phone" type="phone" value={conObPhone} name="conPhone" onchange={conHandleChange}></lightning-input></p>
+                        </div>        
+                    </div>
+                </div>
+                <!--Modal Footer Start-->
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeModal}></lightning-button>
+                    &nbsp;
+                    <lightning-button variant="brand" label="Save" onclick={submitAction}></lightning-button>
+                </footer>
+                </div>
+            </section>
+            <div class="backdropDiv slds-backdrop slds-backdrop_open"></div>
+            </template>
+    
+            <template if:true={TaskShowModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-2" class="modalSection slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!--Modal Header Start-->
+                    <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                        <lightning-icon variant="inverse" onclick={closeModalTask} alternative-text="close" icon-name="utility:close" size="small"></lightning-icon>
+                    </button>
+                    <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Create New Task</h2>
+                    </header>
+                    <!--Modal Body Start-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                        <div class="slds-wrap slds-grid">
+                            <table>                
+                                <tr>
+                                    <td style="color:white;">12345555555555555555555555555 </td><td style="text-align: right;"></td><td>
+                            <select class="slds-select" name = "optionSelect" onchange={conHandleChange} >
+                                <option value="Choose One..">Choose One..</option>
+                                <option value="Account">Account</option>
+                                <option value="Contact">Contact</option>
+                                <option value="Task">Task</option>
+                            </select>
+                            </td></tr></table>
+                            
+                            <p>Subject</p>
+                            <select class="slds-select" onchange={TaskHandleChange} name="SubjectList" >
+                                <option value="">---None---</option>                
+                                  <template  for:each={selectTargetValues.data} for:item="selectOptItem">
+                                     <option key={selectOptItem.custFldvalue} value={selectOptItem.custFldvalue} >
+                                       {selectOptItem.custFldlabel}
+                                     </option>
+                                </template>
+                          </select>
+                          <br/><br/>
+                          
+                          <p>Status</p>
+                          <select class="slds-select" onchange={TaskHandleChange} name="StatusList">
+                            <option value="">---None---</option>                
+                              <template for:each={selectTargetValues1.data} for:item="selectOptItem">
+                                 <option  key={selectOptItem.custFldvalue1} value={selectOptItem.custFldvalue1}>
+                                   {selectOptItem.custFldlabel1}
+                                 </option>
+                            </template>
+                          </select>
+                          <br/><br/>
+                          
+                          <p>Priority</p>
+                          <select class="slds-select" onchange={TaskHandleChange} name="PriorityList">
+                            <option value="">---None---</option>                
+                              <template for:each={selectTargetValues2.data} for:item="selectOptItem">
+                                 <option  key={selectOptItem.custFldvalue2} value={selectOptItem.custFldvalue2}>
+                                   {selectOptItem.custFldlabel2}
+                                 </option>
+                            </template>
+                          </select>
+                              
+                        </div>
+                    </div>
+                    <!--Modal Footer Start-->
+                    <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeModalTask}></lightning-button>
+                        &nbsp;
+                    <lightning-button variant="brand" label="Save" onclick={submitActionTask}></lightning-button>
+                    </footer>
+                </div>
+                </section>
+                <div class="backdropDiv slds-backdrop slds-backdrop_open"></div>
+            </template>
+    </lightning-card>
+    </template>

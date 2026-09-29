@@ -1,0 +1,75 @@
+<apex:page renderAs="pdf" applyHtmlTag="false" applyBodyTag="false" showHeader="false" standardStylesheets="false" controller="AccountPDFController">
+    <html>
+        <head>
+            <style>
+                /*@page {
+                    size: A4 portrait;
+                    margin: 1cm;
+                }*/
+
+                @page landscape {
+                    size: A4 landscape;
+                    margin: 10mm;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                th, td {
+                    border: 1px solid black;
+                    padding: 8px;
+                    text-align: left;
+                }
+
+                th {
+                    background-color: #f2f2f2;
+                }
+
+                th.rotate {
+                    width: 1px;
+                }
+            </style>
+        </head>
+        <body>
+            <apex:facet name="first">
+                <!-- Page 1: Account Information in Portrait Mode -->
+                <h1>Account Information</h1>
+                <table>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Phone</th>
+                        <th>Industry</th>
+                    </tr>
+                    <apex:repeat value="{!AccountList}" var="acc">
+                        <tr>
+                            <td>{!acc.Name}</td>
+                            <td>{!acc.Phone}</td>
+                            <td>{!acc.Industry}</td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:facet>
+            
+            <apex:facet name="landscape">
+                <!-- Page 2: Contact Information in Landscape Mode -->
+                <h1>Contact Information</h1>
+                <table>
+                    <tr>
+                        <th class="rotate">First Name</th>
+                        <th class="rotate">Last Name</th>
+                        <th class="rotate">Phone</th>
+                    </tr>
+                    <apex:repeat value="{!ContactList}" var="con">
+                        <tr>
+                            <td>{!con.FirstName}</td>
+                            <td>{!con.LastName}</td>
+                            <td>{!con.Phone}</td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:facet>
+        </body>
+    </html>
+</apex:page>

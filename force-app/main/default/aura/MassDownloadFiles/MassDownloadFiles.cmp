@@ -1,0 +1,21 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId" controller="MassDownloadFilesController">
+    <aura:attribute name="filesList" type="List"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute name="selectedFileIds" type="String[]"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:handler name="init" value="{!this}" action="{!c.fetchFiles}"/>
+    <lightning:card>
+        <lightning:datatable data="{!v.filesList}" 
+                             columns="{!v.mycolumns}" 
+                             keyField="documentId"
+                             onrowselection="{!c.getSelectedName}"/>
+        <aura:set attribute="footer">
+            <lightning:button 
+                              label="Download Selected File(s)"
+                              class="slds-var-p-around_medium"
+                              variant="brand"
+                              onclick="{!c.downloadFiles}">
+            </lightning:button>
+        </aura:set>
+    </lightning:card>
+</aura:component>

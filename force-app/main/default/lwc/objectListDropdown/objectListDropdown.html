@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Select an Object">
+        <lightning-layout>
+            <lightning-layout-item>
+                <lightning-combobox
+                    label="Select an object"
+                    value={selectedObject}
+                    options={objectList}
+                    onchange={handleChange}>
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <div class="slds-align_absolute-center">
+                    <lightning-icon icon-name={selectedIconName} size="medium"></lightning-icon>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

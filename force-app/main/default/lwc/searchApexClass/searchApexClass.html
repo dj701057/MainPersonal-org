@@ -1,0 +1,90 @@
+<template>
+    <lightning-card title="Apex Class Search" icon-name="custom:custom57">
+        <div class="slds-var-m-around_medium">
+            <lightning-input type="search" onchange={handleKeyChange}
+                class="slds-show slds-is-relative slds-var-m-bottom_small" label="Search">
+            </lightning-input>
+            <template if:true={apexClasses}>
+                <template for:each={apexClasses} for:item="apex">
+                    <lightning-card key={apex.Id}>
+                        <h3 slot="title">
+                            <lightning-icon icon-name="doctype:xml" alternative-text="XML file" title="XML">
+                            </lightning-icon>
+                            {apex.Name}
+                        </h3>
+                        <lightning-button label="Edit" onclick={handleEdit} slot="actions" data-url={apex.Id}>
+                        </lightning-button>
+                        <lightning-button label="View" onclick={handleView} data-id={apex.Id} slot="actions">
+                        </lightning-button>
+                        <lightning-button if:true={apex.showCode} label="Hide" onclick={handleHide} data-id={apex.Id}
+                            slot="actions">
+                        </lightning-button>
+                        <div class="slds-scrollable">
+                            <div class="slds-text-longform">
+                                <div class="slds-page-header__row slds-page-header__row_gutters">
+                                    <div class="slds-page-header__col-details">
+                                        <ul class="slds-page-header__detail-row" style="list-style: none;">
+                                            <li class="slds-page-header__detail-block">
+                                                <div class="slds-text-title slds-truncate" title="Api Version">Api
+                                                    Version
+                                                </div>
+                                                <div class="slds-truncate" title={apex.ApiVersion}>{apex.ApiVersion}
+                                                </div>
+                                            </li>
+                                            <li class="slds-page-header__detail-block">
+                                                <div class="slds-text-title slds-truncate" title="Status">Status</div>
+                                                <div class="slds-truncate" title={apex.Status}>{apex.Status}</div>
+                                            </li>
+                                            <li class="slds-page-header__detail-block">
+                                                <div class="slds-text-title slds-truncate" title="Namespace Prefix">
+                                                    Namespace Prefix
+                                                </div>
+                                                <div class="slds-truncate" title={apex.NamespacePrefix}>
+                                                    {apex.NamespacePrefix}
+                                                </div>
+                                            </li>
+                                            <li class="slds-page-header__detail-block">
+                                                <div class="slds-text-title slds-truncate" title="IsValid">Created Date
+                                                </div>
+                                                <div class="slds-truncate" title={apex.IsValid}>{apex.CreatedDate}</div>
+                                            </li>
+                                            <li class="slds-page-header__detail-block">
+                                                <div class="slds-text-title slds-truncate" title="IsValid">Created By
+                                                    Name
+                                                </div>
+                                                <div class="slds-truncate" title={apex.IsValid}>{apex.CreatedBy.Name}
+                                                </div>
+                                            </li>
+                                            <li class="slds-page-header__detail-block">
+                                                <div class="slds-text-title slds-truncate" title="IsValid">Last Modified
+                                                    Date
+                                                </div>
+                                                <div class="slds-truncate" title={apex.IsValid}>{apex.LastModifiedDate}
+                                                </div>
+                                            </li>
+                                            <li class="slds-page-header__detail-block">
+                                                <div class="slds-text-title slds-truncate" title="IsValid">Last Modified
+                                                    By Name
+                                                </div>
+                                                <div class="slds-truncate" title={apex.IsValid}>
+                                                    {apex.LastModifiedBy.Name}
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <blockquote if:true={apex.showCode}>
+                                    <pre>
+                                        <code class="language-html">
+                                            {apex.Body}
+                                        </code>
+                                    </pre>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </lightning-card>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

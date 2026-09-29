@@ -1,0 +1,14 @@
+<apex:page renderAs="pdf">
+    <html>
+        <head>
+            <apex:stylesheet value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        </head>
+        <body>
+            <h1>Customer Information</h1>
+            <p><i class="fa fa-phone"></i> Call: (123) 456-7890</p>
+            <p>&#x260E; Call: (123) 456-7890</p>
+
+            <!-- Your other content here -->
+        </body>
+    </html>
+</apex:page>

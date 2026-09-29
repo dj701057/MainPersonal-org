@@ -1,0 +1,175 @@
+<!--<apex:page controller="Utrace_integration">
+    <apex:form>
+        <apex:inputText value="{!ipAddress}"/>
+        <apex:commandButton value="Get IP Details" action="{!callUtrace}" reRender="OP, ResultSection" />
+        <apex:outputPanel id="ResultSection">
+            <h2>Result</h2>
+            <ul>
+                <li>IP: {!result.ip}</li>
+                <li>Host: {!result.host}</li>
+                <li>ISP: {!result.isp}</li>
+                <li>Organization: {!result.org}</li>
+                <li>Region: {!result.region}</li>
+                <li>Country Code: {!result.countrycode}</li>
+                <li>Latitude: {!result.latitude}</li>
+                <li>Longitude: {!result.longitude}</li>
+                <li>Queries: {!result.queries}</li>
+            </ul>
+        </apex:outputPanel>
+        Data Received From Utrace: {!body}
+        <apex:inputTextarea value="{!body}" id="OP" cols="20" rows="20"/>
+    </apex:form>
+</apex:page>-->
+
+<apex:page controller="Utrace_integration" showHeader="true" standardStylesheets="false" sidebar="true">
+    <html>
+    <head>
+        <title>uTrace Integration</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+        <style>
+            .container {
+                margin-top: 20px;
+            }
+            
+            h2 {
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>uTrace Integration</h2>
+                    <apex:form >
+                        <div class="form-group">
+                            <label for="ipAddress">Enter IP Address:</label>
+                            <apex:inputText value="{!ipAddress}" styleClass="form-control" id="ipAddress" />
+                        </div>
+                        <apex:commandButton value="Get IP Details" action="{!callUtrace}" reRender="OP, ResultSection" styleClass="btn btn-primary" />
+                    </apex:form>
+                </div>
+                <div class="col-md-8">
+                    <apex:outputPanel id="ResultSection">
+                        <h2>Result</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>IP:</strong> {!result.ip}</li>
+                            <li class="list-group-item"><strong>Host:</strong> {!result.host}</li>
+                            <li class="list-group-item"><strong>ISP:</strong> {!result.isp}</li>
+                            <li class="list-group-item"><strong>Organization:</strong> {!result.org}</li>
+                            <li class="list-group-item"><strong>Region:</strong> {!result.region}</li>
+                            <li class="list-group-item"><strong>Country Code:</strong> {!result.countrycode}</li>
+                            <li class="list-group-item"><strong>Latitude:</strong> {!result.latitude}</li>
+                            <li class="list-group-item"><strong>Longitude:</strong> {!result.longitude}</li>
+                            <li class="list-group-item"><strong>Queries:</strong> {!result.queries}</li>
+                        </ul>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+</apex:page>
+
+<!--<apex:page controller="Utrace_integration" showHeader="false" standardStylesheets="false">
+    <apex:form >
+    <style>
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .input-section input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .input-section input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .result-section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .result-section ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .result-section li {
+            margin-bottom: 5px;
+        }
+        .data-received-section {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .data-received-section textarea {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            resize: vertical;
+        }
+    </style>
+    <div class="container">
+        <h1>uTrace IP Details</h1>
+        <div class="input-section">
+            <apex:inputText value="{!ipAddress}" styleClass="ip-input" />
+            <apex:commandButton value="Get IP Details" action="{!callUtrace}" reRender="OP, ResultSection" styleClass="submit-btn" />
+        </div>
+        <apex:outputPanel id="ResultSection" layout="block" rendered="{!NOT(ISBLANK(result))}">
+            <div class="result-section">
+                <h2>Result</h2>
+                <ul>
+                    <li>IP: {!result.ip}</li>
+                    <li>Host: {!result.host}</li>
+                    <li>ISP: {!result.isp}</li>
+                    <li>Organization: {!result.org}</li>
+                    <li>Region: {!result.region}</li>
+                    <li>Country Code: {!result.countrycode}</li>
+                    <li>Latitude: {!result.latitude}</li>
+                    <li>Longitude: {!result.longitude}</li>
+                    <li>Queries: {!result.queries}</li>
+                </ul>
+            </div>
+        </apex:outputPanel>
+        <div class="data-received-section">
+            <p>Data Received From uTrace:</p>
+            <apex:inputTextarea value="{!body}" id="OP" cols="30" rows="10" styleClass="data-received" />
+        </div>
+    </div>
+   </apex:form>   
+</apex:page>-->

@@ -1,0 +1,41 @@
+<apex:page controller="GlobalSearchRecordController" setup="false" sidebar="false" tabStyle="Lead" showHeader="true">
+     <apex:sectionHeader title="Search" subtitle="Global Search"/>
+     <apex:form >
+         <apex:pageBlock title="Global Search Block">
+             <apex:pageBlockSection title="Search Records" columns="2" collapsible="true">
+                 <apex:inputtext label="Enter the Record Name" html-placeHolder="Enter the Search Text" value="{!searchText}" />
+                 <apex:commandButton value="Search Records" action="{!SearchRecords}" rerender="AccBlock,conBlock,ldBlock"/>
+             </apex:pageBlockSection>
+         </apex:pageBlock>
+         
+         <!--Accounts-->
+         <apex:pageBlock title="Matching Accounts : ({!lstAccounts.size})" id="AccBlock">
+             <apex:pageBlockTable value="{!lstAccounts }" var="acc">
+                 <apex:column value="{!acc.Name}"/>
+                 <apex:column value="{!acc.Rating}"/> 
+                 <apex:column value="{!acc.Industry}"/>
+                 <apex:column value="{!acc.Fax}"/>
+             </apex:pageBlockTable>
+         </apex:pageBlock>
+         
+         <!--Contacts-->
+         <apex:pageBlock title="Matching Contacts: ({!lstContacts.size})" id="conBlock">
+                 <apex:pageBlockTable value="{!lstContacts}" var="con">
+                 <apex:column value="{!con.firstname}"/>
+                 <apex:column value="{!con.lastname}"/> 
+                 <apex:column value="{!con.Phone}"/>
+                 <apex:column value="{!con.Fax}"/>
+             </apex:pageBlockTable>
+         </apex:pageBlock>
+         
+         <!--Leads-->
+         <apex:pageBlock title="Matching Leads: ({!lstLeads.size})" id="ldBlock">
+             <apex:pageBlockTable value="{!lstLeads}" var="ld">
+                 <apex:column value="{!ld.firstname}"/>
+                 <apex:column value="{!ld.lastname}"/> 
+                 <apex:column value="{!ld.Rating}"/>
+                 <apex:column value="{!ld.industry}"/>
+              </apex:pageBlockTable>
+         </apex:pageBlock>
+     </apex:form>
+</apex:page>

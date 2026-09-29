@@ -1,0 +1,18 @@
+<apex:page controller="ChartController2" renderAs="pdf">
+    <html>
+        <head>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        </head>
+        <body>
+            <canvas id="accountChart" width="400" height="400"></canvas>
+            <script>
+                var chartData = {!chartData};
+                var ctx = document.getElementById("accountChart").getContext("2d");
+                var myChart = new Chart(ctx, {
+                    type: chartData.type,
+                    data: chartData.data,
+                });
+            </script>
+        </body>
+    </html>
+</apex:page>

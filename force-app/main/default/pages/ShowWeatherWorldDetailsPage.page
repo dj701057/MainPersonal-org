@@ -1,0 +1,22 @@
+<apex:page controller="WorldPostalBranchesController" setup="false" sidebar="false" showHeader="true" >
+    <apex:sectionHeader title="Postal" subtitle="Postal Branches"/>
+    <apex:form >
+      <apex:PageBlock title="Postal Branches Block">
+          <apex:pageBlockSection title="Search Branches" columns="3" collapsible="true">
+            <apex:inputText label="Enter Country" html-placeholder="Enter Country Name" value="{! countryName}" />
+            <apex:inputText label="Enter Postal Code" html-placeholder="Enter PinCode" value="{! postalPinCode}" />
+             <apex:commandButton value="Search Branches"  action="{!SearchPostalBranches}" reRender="pgBlock" />
+          </apex:pageBlockSection>
+        </apex:PageBlock> 
+        
+        <apex:pageBlock title="Postal Branches : ( {!lstBranches.size})" id="pgBlock">
+            {!postalResponseJSON}
+            <apex:pageBlockTable value="{!lstBranches}" var="br">
+                <apex:column value="{!br.Name}" headerValue="Place Name" />
+                <apex:column value="{!br.BranchType}" headerValue="Longitude" />
+                <apex:column value="{!br.DeliveryStatus}" headerValue="state abbreviation" />
+                <apex:column value="{!br.Circle}" headerValue="Latitude" />
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

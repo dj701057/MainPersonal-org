@@ -1,0 +1,22 @@
+<template>
+    <lightning-card>
+        <div class="slds-box slds-theme–default">
+            <lightning-record-edit-form record-id={recordId} object-api-name={objectAPIName} onsuccess={handleSuccess} onsubmit={handleSubmit}>
+                <lightning-messages>
+                </lightning-messages>
+                <lightning-input-address
+                    address-label="Enter Zip/Postal Code"
+                    street-label="Street"
+                    city-label="City"
+                    country-label=Country
+                    province-label="State/ Province"
+                    postal-code-label="Zip/ Postal Code"
+                    onchange={addressInputChange}
+                    show-address-lookup>
+                </lightning-input-address>
+                <lightning-button class="slds-m-top_small" type="submit" label="Update Address">
+                </lightning-button>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+</template>

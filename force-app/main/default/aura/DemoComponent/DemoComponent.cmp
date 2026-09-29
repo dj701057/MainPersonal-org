@@ -1,0 +1,10 @@
+<aura:component implements="force:appHostable">
+    <aura:attribute name="var1" type="string" default="Hello" />
+    <aura:attribute name="jsObject" type="Object" />
+    <aura:handler name="myAction" value="{!this}" action="{!c.myAction}" />
+    <p>this is the first Aura Component</p>
+    <hr/>
+    <h1>Component attribute value's : {!v.var1}</h1>
+    <hr/>
+    <p>jsObject values : {!v.jsObject.name} - {!v.jsObject.email}</p>
+</aura:component>

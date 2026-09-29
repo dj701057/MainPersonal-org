@@ -1,0 +1,163 @@
+<template>
+
+    <div class="slds-card" style="font-family: 'Open Sans', sans-serif">
+
+        <!-- Header -->
+        <header class="slds-card__header slds-media slds-media_center">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="standard:contact" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body slds-card__header-title slds-text-title_bold" style="font-size: 14px">
+                Account 
+            </div>
+        </header>
+
+        <!-- Table -->
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer" role="grid">
+            <thead>
+            <tr>
+                <th scope="col" height="22" style="width: 3rem">S.No</th>
+                <th scope="col" height="22">Name</th>
+                <th scope="col" height="22">Website</th>
+                <th scope="col" height="22">Phone</th>
+                <th scope="col" height="22" style="width: 3rem"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={listOfAccounts} for:item="rec">
+                <tr key={rec} class="slds-hint-parent">
+                    <td style="font-weight: bold">
+                        <lightning-formatted-number value={rec.index}></lightning-formatted-number>.
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Name" value={rec.Name} onchange={handleInputChange}></lightning-input>
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Website" value={rec.Website} onchange={handleInputChange}></lightning-input>
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Phone" value={rec.Phone} onchange={handleInputChange}></lightning-input>
+                    </td>
+                   
+
+
+                </tr>
+            </template>
+            </tbody>
+        </table>
+        
+        <!-- contacts -->
+
+        <header class="slds-card__header slds-media slds-media_center">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="standard:account" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body slds-card__header-title slds-text-title_bold" style="font-size: 14px">
+                contact 
+            </div>
+        </header>
+
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer" role="grid">
+            <thead>
+            <tr>
+                <th scope="col" height="22" style="width: 3rem">S.No</th>
+                <th scope="col" height="22">First Name</th>
+                <th scope="col" height="22">Last Name</th>
+                <th scope="col" height="22">Email</th>
+                <th scope="col" height="22" style="width: 3rem"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={listOfAccounts} for:item="rec">
+                <tr key={rec} class="slds-hint-parent">
+                    <td style="font-weight: bold">
+                        <lightning-formatted-number value={rec.index}></lightning-formatted-number>.
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="First Name" value={rec.FirstName} onchange={handleInputChange}></lightning-input>
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Last Name" value={rec.LastName} onchange={handleInputChange}></lightning-input>
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Email" value={rec.Email} onchange={handleInputChange}></lightning-input>
+                    </td>
+                    <td>
+                        <lightning-button variant="neutral" label=" " title=" " icon-name="utility:add" onclick={addNewRow}></lightning-button>
+                    </td>
+
+                    <td>
+                        <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" title="Remove" name={rec.index} onclick={removeRow}></lightning-button-icon>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+
+
+        <!-- Opportunity -->
+        <header class="slds-card__header slds-media slds-media_center">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="standard:account" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body slds-card__header-title slds-text-title_bold" style="font-size: 14px">
+                Opportunity
+            </div>
+        </header>
+
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer" role="grid">
+            <thead>
+            <tr>
+                <th scope="col" height="22" style="width: 3rem">S.No</th>
+                <th scope="col" height="22">Name</th>
+                <th scope="col" height="22">Close Date</th>
+                <th scope="col" height="22">Stage</th>
+                <th scope="col" height="22" style="width: 3rem"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <template for:each={listOfAccounts} for:item="rec">
+                <tr key={rec} class="slds-hint-parent">
+                    <td style="font-weight: bold">
+                        <lightning-formatted-number value={rec.index}></lightning-formatted-number>.
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Name" value={rec.Name} onchange={handleInputChange}></lightning-input>
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Close Date" value={rec.CloseDate} onchange={handleInputChange}></lightning-input>
+                    </td>
+
+                    <td>
+                        <lightning-input type="text" variant="label-hidden" label="" data-id={rec.index} name="Stage" value={rec.Stage} onchange={handleInputChange}></lightning-input>
+                    </td>
+                    <td>
+                        <lightning-button variant="neutral" label=" " title=" " icon-name="utility:add" onclick={addNewRow}></lightning-button>
+                    </td>
+
+                    <td>
+                        <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" title="Remove" name={rec.index} onclick={removeRow}></lightning-button-icon>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+
+
+
+
+        <!-- Footer -->
+        <footer class="slds-modal__footer" style="padding: 0.50rem 1rem;">
+            <lightning-button icon-name="utility:save" variant="brand" label="SAVE" title="Save" onclick={SAVE}></lightning-button>
+        </footer>
+    </div>
+
+</template>

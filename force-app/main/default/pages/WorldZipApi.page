@@ -1,0 +1,8 @@
+<apex:page controller="ZipCodeController">
+    <apex:form >
+        <apex:inputText value="{!countryName}" label="Country Name"/>
+        <apex:inputText value="{!postalPinCode}" label="Postal Pin Code"/>
+        <apex:commandButton value="Search" action="{!search}"/>
+    </apex:form>
+    <apex:outputText value="{!jsonMap}"/>
+</apex:page>

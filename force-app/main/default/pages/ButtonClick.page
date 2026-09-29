@@ -1,0 +1,12 @@
+<apex:page setup="false" sidebar="false" standardController="Account" tabStyle="Account" showHeader="true">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"/>
+    <script>
+        $(document).ready(function(){
+            $("p").click(function(){
+                alert("The paragraph was clicked.");
+            });
+        });
+    </script>
+    
+    <p>Click on this paragraph.</p>
+</apex:page>

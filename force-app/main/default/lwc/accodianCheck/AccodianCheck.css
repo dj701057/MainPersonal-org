@@ -1,0 +1,66 @@
+/* Attempt to target Shadow DOM elements */
+.slds-accordion__summary lightning-primitive-icon {
+    display: none;
+}
+/* Scoped CSS to hide the dropdown icon */
+::slotted(.slds-button__icon) {
+    display: none !important; /* Hide the dropdown icon */
+}
+
+.slds-accordion__summary .slds-button__icon {
+    display: none !important; /* Applies to accordion icon */
+}
+/* Hides the accordion dropdown icon */
+.slds-accordion__summary-action {
+    position: relative;
+}
+
+.slds-accordion__summary-action lightning-primitive-icon {
+    display: none !important; /* Hides the icon completely */
+}
+.accordion-button::after {
+  background-image: initial;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: initial;
+}
+
+
+
+/* Optionally hide SVG elements inside the icon */
+.slds-accordion__summary-action svg {
+    display: none !important;
+}
+
+/* Ensure no extra spacing is caused by hidden icons */
+.slds-accordion__summary-action {
+    padding-left: 0 !important;
+}
+
+/* Target the accordion icon through the part attribute */
+:host ::part(summary-icon) {
+    display: none !important; /* Completely hide the arrow icon */
+}
+.slds-accordion__summary-action-icon {
+    --b: 5px;
+    width: 15px;
+    aspect-ratio: 1;
+    border: 0px solid #00000005;
+    background: conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,#000000 0) calc(106% + var(--b)/2) calc(83% + var(--b)/2)/ calc(51% + var(--b)) calc(48% + var(--b));
+    display: inline-block;
+}
+
+.slds-accordion__summary-action-icon>g {
+    display: none;
+}
+
+.slds-is-open>.slds-accordion__summary .slds-accordion__summary-action-icon{
+    transform: rotate(0deg);
+    --b: 5px;
+    width: 15px;
+    aspect-ratio: 1;
+    border: 0px solid #00000005;
+    background: conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,#000000 0) calc(106% + var(--b)/2) calc(83% + var(--b)/2)/ calc(124% + var(--b)) calc(46% + var(--b));
+    display: inline-block;
+}

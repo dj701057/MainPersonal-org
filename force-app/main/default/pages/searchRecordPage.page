@@ -1,0 +1,11 @@
+<apex:page controller="SearchRecordController" setup="false" sidebar="false" showHeader="true" tabStyle="Contact">
+     <apex:sectionHeader title="Search Page" subtitle="search Lead page"/>
+     <apex:form >
+         <apex:pageBlock title="search Lead Records">
+             <apex:pageBlockSection title="Search Leads" collapsible="true" columns="2">
+                 <apex:inputText label="Enter Lead Last Name:" html-placeholder="Enter search text" value="{!searchText}"/>
+                 <apex:commandButton value="Search Records" action="{!GotoSearchResultPage}"/>
+             </apex:pageBlockSection>
+         </apex:pageBlock>
+     </apex:form>
+</apex:page>

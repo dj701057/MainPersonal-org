@@ -1,0 +1,108 @@
+<apex:page readOnly="false" setup="false" sidebar="false" showHeader="true" >
+  Welcome to vfPage Programming .This is my First Vf page.
+  <br/><br/>
+  <b> This Page is used to define the Tag Properties.</b><br/>
+  ---------------------------------------------------------------------<br/>
+  1.setup ="Boolean"<br/>
+  2.SideBar="Boolean"<br/>
+  3.ShowHeader="Boolean"<br/>
+  4.TabStyle ="SObjectName"<br/>
+  5.RenderAs ="Pdf"---------> to download in Pdf formet.<br/>
+  6.Rendered ="Boolean"-----------> Want to display or Not.<br/>
+ <!-- 7.ContentType ="Application/MSWord#<FieldName.docs" <br/>-->
+ 8.ReadOnly ="Boolean". used to extend the no of records (10000) but No DML operation can be perform.<br/>
+ <!-- 9.Action ="{!<MethodName>}"-----Used to invoke the method on page Loading.-->
+ 10.Standardontroller="StandardObjectClassName".<br/>
+ 11.Controller="Custom class Name".<br/>
+ 12.Extension ="Extension Class Name".<br/>
+ 13.<apex:SectionHeader title="Demo" subtitle="FirstVfPage" />
+ <!--14 
+       Properties:
+           1.Id="RefrenceName"
+           2.Rendered="Boolean".-->.
+ <apex:form >
+     <apex:pageBlock title="Demo of Page Block tag" id="demoPageBlock1">
+         <apex:pageBlockButtons title="PageBlockButtons" location="Both">
+                 <apex:commandButton value="Save"/>
+                 <apex:commandButton value="Save & New"/>
+                 <apex:commandButton value="Cancel"/>
+                 <apex:commandButton value="Search"/>
+                 
+                 <br/>
+                 <apex:commandLink value="Next"/> &nbsp;&nbsp;
+                 <apex:commandLink value="Previous"/>
+             </apex:pageBlockButtons>
+         <apex:pageBlockSection Title="PageBlockSection1" columns="1" collapsible="true" id="pageBlockSectionId1">
+             
+         </apex:pageBlockSection>
+         
+         <apex:pageBlockSection Title="PageBlockSection1.1" columns="2" collapsible="true" id="pageBlockSectionId2"></apex:pageBlockSection>
+
+     </apex:pageBlock>
+     <apex:pageBlock title="Demo of Page Block tag2" id="demoPageBlock2">
+         <apex:pageBlockButtons title="PageBlockButtons" location="top">
+                 <apex:commandButton value="Save"/>
+                 <apex:commandButton value="Save & New"/>
+                 <apex:commandButton value="Cancel"/>
+                 <apex:commandButton value="Search"/>
+             </apex:pageBlockButtons>
+     </apex:pageBlock>
+     <apex:pageBlock title="Demo of Page Block tag3" id="demoPageBlock3">
+         <apex:pageBlockButtons title="PageBlockButtons" location="Bottom">
+                 <apex:commandButton value="Save"/>
+                 <apex:commandButton value="Save & New"/>
+                 <apex:commandButton value="Cancel"/>
+                 <apex:commandButton value="Search"/>
+             </apex:pageBlockButtons>
+     </apex:pageBlock>
+ </apex:form>
+ <!--
+    15.PageBlock Tag (Apex:PageBlock):
+    Properties:
+    1.Id
+    2.Title="PageBlockTitle"
+    3.Rendered="Boolean"
+    
+    Note. A page Contain multiple Page Block
+    
+ -->
+ <!--  
+     16.PageBlockSection Tag (<apex:pageBlockSection ></apex:pageBlockSection>):
+     Properties:
+     1.Title="Abc"
+     2.Columns="Integer 1/2/3..."
+     3.Collapsible ="Boolean"
+     4.Id="refrence Name"
+     5.Rendered ="Boolean"
+     
+ -->
+ 
+ <!--
+     17. PageBlockButtons Tag(<apex:PageBlockButtons>)</apex:PageBlockButtons>):
+     Title
+     2.Location
+     3.Renderd
+     
+ -->
+ 
+ <!--
+     CommandButton Tag (<apex:commandButton />
+     1.id="RefrenceName"
+     2.Value ="Value Caption for Button"
+     3. Action ="{!<MethodName>}"
+     4.Rendered="Boolean"
+     5.Rerender="ComponentRefrenceName"
+     
+ -->
+ 
+ <!--
+     CommandLink Tag (<apex:commandLink/>
+     same as commandButton but its appearence is different like HyperLink
+ -->
+ 
+  
+  
+  <br/>
+  <br/> 
+  Thanks
+</apex:page>

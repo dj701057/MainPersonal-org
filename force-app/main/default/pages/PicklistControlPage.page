@@ -1,0 +1,54 @@
+<apex:page setup="false" sidebar="false" showHeader="true" tabStyle="Lead">
+    <apex:sectionHeader title="Picklist " subtitle="Input Controls"/>
+    <apex:form >
+        <apex:pageBlock title="Picklist Controls Block">
+            <apex:pageBlockSection title="Picklist controls section" columns="1" collapsible="true">
+                <apex:selectList label="Select the Country" multiselect="false" size="1">
+                    <apex:selectOption itemLabel="---None--" itemValue=""></apex:selectOption>
+                    <apex:selectOption itemLabel="India" itemValue="IND"></apex:selectOption>
+                    <apex:selectOption itemLabel="US" itemValue="US"></apex:selectOption>
+                    <apex:selectOption itemLabel="UK" itemValue="UK"></apex:selectOption>
+                    <apex:selectOption itemLabel="China" itemValue="China"></apex:selectOption>
+                    <apex:selectOption itemLabel="Pak" itemValue="Pak"></apex:selectOption>
+                </apex:selectList>
+            </apex:pageBlockSection>
+            
+            <!--MultiSelect Picklist-->
+            
+            <apex:pageBlockSection title="MultiSelect Picklist Control" columns="1" collapsible="true">
+                <apex:selectList label="Select the Country" multiselect="true" size="3">
+                    <apex:selectOption itemLabel="---None--" itemValue=""></apex:selectOption>
+                    <apex:selectOption itemLabel="India" itemValue="IND"></apex:selectOption>
+                    <apex:selectOption itemLabel="US" itemValue="US"></apex:selectOption>
+                    <apex:selectOption itemLabel="UK" itemValue="UK"></apex:selectOption>
+                    <apex:selectOption itemLabel="China" itemValue="China"></apex:selectOption>
+                    <apex:selectOption itemLabel="Pak" itemValue="Pak"></apex:selectOption>
+                </apex:selectList>
+            </apex:pageBlockSection>
+            
+            <!--Select CheckBox-->
+            <apex:pageBlockSection title="CheckBox Control section" columns="1" collapsible="true">
+                <apex:selectCheckboxes label="Select the Country" borderVisible="true">
+                    <apex:selectOption itemLabel="---None--" itemValue=""></apex:selectOption>
+                    <apex:selectOption itemLabel="India" itemValue="IND"></apex:selectOption>
+                    <apex:selectOption itemLabel="US" itemValue="US"></apex:selectOption>
+                    <apex:selectOption itemLabel="UK" itemValue="UK"></apex:selectOption>
+                    <apex:selectOption itemLabel="China" itemValue="China"></apex:selectOption>
+                    <apex:selectOption itemLabel="Pak" itemValue="Pak"></apex:selectOption>
+                </apex:selectCheckboxes>
+            </apex:pageBlockSection>
+            
+            <!--Select RadioButton Controls-->
+            <apex:pageBlockSection title="Radio Button controls section" columns="1" collapsible="true">
+                <apex:selectRadio label="Select the Country" >
+                    <apex:selectOption itemLabel="India" itemValue="IND"></apex:selectOption>
+                    <apex:selectOption itemLabel="US" itemValue="US"></apex:selectOption>
+                    <apex:selectOption itemLabel="UK" itemValue="UK"></apex:selectOption>
+                    <apex:selectOption itemLabel="China" itemValue="China"></apex:selectOption>
+                    <apex:selectOption itemLabel="Pak" itemValue="Pak"></apex:selectOption>
+                </apex:selectRadio>
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

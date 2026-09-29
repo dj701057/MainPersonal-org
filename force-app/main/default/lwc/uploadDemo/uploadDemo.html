@@ -1,0 +1,49 @@
+<template>
+    <lightning-layout multiple-rows=true>
+        <lightning-layout-item size="12">
+            <lightning-card variant="narrow">
+                <div slot="title">
+                <h5>Files</h5>
+                <h1><b>{chooseOptionName}</b></h1>
+                <h5>{sizeofOptionList} items Sorted by Last Modified Date</h5>
+                </div>
+                <div slot ="actions" class="button">
+                  <lightning-button label="Upload Files" onclick={handleUploadFiles} ></lightning-button>
+                </div>
+            </lightning-card>
+        </lightning-layout-item>
+    <lightning-layout-item size = "2">
+        <div class="options page-section page-right">
+            <span>
+                <ul>
+                    <li><a onclick={handleOptionClick}>Owned by Me</a></li><br/>
+                    <li><a onclick={handleOptionClick}>Shared with Me</a></li><br/>
+                    <li><a onclick={handleOptionClick}>Recent</a></li><br/>
+                    <li><a onclick={handleOptionClick}>Following</a></li><br/>
+                    <li><a onclick={handleOptionClick}>Libraries</a></li><br/>
+                </ul>
+            </span>
+            </div>
+    </lightning-layout-item>
+    <lightning-layout-item size="10">
+        <lightning-layout>
+           <lightning-layout-item size="5" class="search">
+
+              <lightning-input id="search-01" type="search" onchange={handleSearch} onemptied={handleEmpty}></lightning-input>
+
+              <lightning-button label="Search" variant="brand" onclick={handleSearchButton} ></lightning-button>
+
+
+            </lightning-layout-item>
+        </lightning-layout>
+              <div class="options">
+              <lightning-datatable 
+                key-field="Id"
+                data={contentDoc}
+                columns={columns}
+                hide-checkbox-column=true>
+              </lightning-datatable>
+              </div>
+    </lightning-layout-item>
+    </lightning-layout>
+</template>

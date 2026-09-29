@@ -1,0 +1,19 @@
+<apex:page setup="false" sidebar="false" showHeader="true" tabStyle="Account" >
+    <!--<chatter:feedWithFollowers entityId="{!Account.ID}"/>-->
+  <apex:detail inlineEdit="true" showChatter="true" title="true" relatedList="false"/>
+  <apex:relatedList list="Contacts" pageSize="5" rendered="true"/>
+  <apex:relatedList list="Notes" pageSize="5" rendered="true"/>
+</apex:page>
+
+<!--
+To test the Detailed page we have to pass the account record id as follows
+https://empathetic-otter-9c1rzm-dev-ed--c.vf.force.com/apex/AccounRecordDetailPage?id=0015j00000wIEoe
+-->
+<!--
+    relatedList Tag  is used for custom related lst one Related list is used for only one Related list 
+    properties:
+    1.List ="RelatedListName"
+    2.Page size ="Integer"
+    3.Rendered="Boolean"
+    
+-->

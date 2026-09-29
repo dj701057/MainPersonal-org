@@ -1,0 +1,8 @@
+<apex:page controller="ShowProductDetailController">
+     Product Code is .... {!ProductCode}<br/>
+     {!productName }<br/>
+     {!ManufactureName}<br/>
+     {!unitPrice}<br/>
+     {!manufacturingDate}<br/>
+     {!expiryDate}<br/>
+</apex:page>

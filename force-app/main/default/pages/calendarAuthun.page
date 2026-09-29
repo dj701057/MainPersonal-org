@@ -1,0 +1,5 @@
+<apex:page controller="OAuthCallbackControllers">
+    <apex:form >
+        <apex:commandLink value="Connect to Google Calendar" action="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/calendar&client_id={!$Api.Partner_Server_URL_260}&redirect_uri={!$Api.Partner_Server_URL_260}/apex/OAuthCallback&response_type=code" target="_blank" />
+    </apex:form>
+</apex:page>

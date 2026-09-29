@@ -1,0 +1,7 @@
+<apex:page controller="LanguageController">
+    <apex:form >
+        <apex:inputCheckbox value="{!englishChecked}" label="English"/>
+        <apex:inputCheckbox value="{!japaneseChecked}" label="Japanese"/>
+        <apex:commandButton value="Submit" action="{!goToLanguagePage}"/>
+    </apex:form>
+</apex:page>

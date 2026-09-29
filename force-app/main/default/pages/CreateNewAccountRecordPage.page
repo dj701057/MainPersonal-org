@@ -1,0 +1,7 @@
+<apex:page action="{!CreateAccountRecord}" controller="CreateNewAccountRecordController">
+  {!recordResult }
+  <apex:form >
+      <apex:inputText label="Input Text Tag" html-placeholder="Input Text Tag"/>
+  </apex:form>
+  
+</apex:page>

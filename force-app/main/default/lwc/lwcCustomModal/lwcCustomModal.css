@@ -1,0 +1,11 @@
+.c-container {
+
+    border: 1px;
+   
+}
+
+.page-section {
+    border: solid 1px #ccc;
+    padding: 1rem;
+    margin: 0%;
+}

@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Sign and Capture" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <lightning-button label="Sign on PDF" onclick={openSignOnPDFModal}></lightning-button>
+            <lightning-button label="Capture & Save the Sign" onclick={openCaptureSignModal}></lightning-button>
+        </div>
+        <div if:true={isSignOnPDFModalOpen} class="modal-container">
+            <!-- Modal content for "Sign on PDF" -->
+            <div class="modal-content">
+                <h2>Sign on PDF</h2>
+                <!-- Add your PDF signing content here -->
+                <lightning-button label="Close" onclick={closeModal}></lightning-button>
+            </div>
+        </div>
+        <div if:true={isCaptureSignModalOpen} class="modal-container">
+            <!-- Modal content for "Capture & Save the Sign" -->
+            <div class="modal-content">
+                <lightning-card variant="Narrow" title="Signature Section" icon-name="standard:record_signature_task">
+                    <template if:true={showLoading}>
+                        <lightning-spinner alternative-text="Loading" size="medium"
+                            class="spinnerClass"></lightning-spinner>
+                    </template>
+                    <div class="slds-align_absolute-center">
+                        <canvas id="sPanel" style="border:1px solid black;">
+                        </canvas>
+                    </div>
+                    <div>
+                        <lightning-button variant="brand" label="Save" class="slds-m-left_x-small"
+                            onclick={handleSaveSignature}>
+                        </lightning-button>
+                        <lightning-button variant="brand" label="Clear" class="slds-m-left_x-small"
+                            onclick={handleClear}>
+                        </lightning-button>
+                        <lightning-button label="Close" variant="brand" class="slds-m-left_x-small"
+                            onclick={closeModal}>
+                        </lightning-button>
+                    </div>
+                </lightning-card>
+                <!--<c-SignatureLWCChildForSave></c-SignatureLWCChildForSave> --><!-- Use a child component for capturing signature -->
+            </div>
+        </div>
+    </lightning-card>
+</template>

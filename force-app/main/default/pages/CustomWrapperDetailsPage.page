@@ -1,0 +1,32 @@
+<apex:page action="{!GetRecords}" controller="CustomWrapperDetailsController" setup="false" sidebar="false" showHeader="true" tabStyle="Lead">
+  <apex:sectionHeader title="Custom Wrapper Class" subtitle="AccountConLeads Wrapper"/>
+  <apex:form >
+      <apex:pageBlock title="Custom Wrapper Block" id="pgBlock">
+      
+          <apex:pageBlockButtons location="top">
+              <apex:commandButton value="Select All" action="{!selectAllRecords}" rerender="pgBlock"/>
+              <apex:commandButton value="UnSelect All" action="{!UnselectAllRecords}" rerender="pgBlock"/>
+              <apex:commandButton value="Delete"/>
+          </apex:pageBlockButtons>
+      
+          <apex:pageBlockTable value="{!lstWrapper}" var="wr">
+          <apex:column headerValue="Action">
+              <apex:inputCheckbox value="{!wr.isSelected}"/>
+          </apex:column>
+          <apex:column headerValue="Record Name">
+              <apex:outputLink value="/{!wr.recordID}" target="_blank">
+                  {!wr.FirstName}  {!wr.LastName}
+              </apex:outputLink>
+          </apex:column>
+              <apex:column value="{!wr.designation}" headerValue="Designation"/>
+              <apex:column value="{!wr.PhoneNumber}" headerValue="PhoneNumber"/>
+              <apex:column value="{!wr.faxNumber}" headerValue="faxNumber"/>
+              <apex:column value="{!wr.RatingValue}" headerValue="RatingValue"/>
+              <apex:column value="{!wr.IndustryName}" headerValue="IndustryName"/>
+              
+              <apex:column value="{!wr.AnnualRevenueValue}" headerValue="AnnualRevenueValue"/>
+              <apex:column value="{!wr.CountryName}" headerValue="CountryName"/>
+          </apex:pageBlockTable>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

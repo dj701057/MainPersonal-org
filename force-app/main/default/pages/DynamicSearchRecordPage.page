@@ -1,0 +1,25 @@
+<apex:page controller="DynamicSearchAccountRecordsController" setup="false" sidebar="false" showHeader="true" tabstyle="Lead" >
+  <apex:sectionHeader title="Accounts" subtitle="Search Account"/>
+  <apex:form >
+      <apex:PageMessages id="errors"></apex:PageMessages>
+  
+      <apex:pageBlock title="Search Account Block">
+          <apex:pageBlockSection title="Search Account Records" collapsible="true" columns="2">
+              <apex:inputText label="Enter Search text" value="{!searchText}" html-placeholder="Enter Search text"/>
+              <apex:commandButton value="Search Records" action="{!searchAccountRecords}" reRender="pgBlock,errors"/>
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:form>
+  <apex:pageBlock title="Search Records: ( {!lst.size} )" id="pgBlock">
+      <apex:pageBlockTable value="{!lst}" var="acc">
+          <apex:column headerValue="Account Name">
+              <apex:outputLink value="/{!acc.id}" target="_blank"> {!acc.Name} </apex:outputLink>
+          </apex:column>
+              <!--<apex:column value="acc.id"/>
+              <apex:column value="acc.Name"/>-->
+              <apex:column value="{!acc.Rating}"/>
+              <apex:column value="{!acc.Phone}"/>
+              <apex:column value="{!acc.Industry}"/>
+      </apex:pageBlockTable>
+  </apex:pageBlock>
+</apex:page>

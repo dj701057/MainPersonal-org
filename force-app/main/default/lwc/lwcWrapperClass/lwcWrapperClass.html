@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Fetch Opp Record  Wrapper" icon-name="standard:opportunity">
+            <br/>
+                    <table class="tblColPad" border="1" cellpadding="5" cellspacing="5"  style="border-collapse:collapse;">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>StageName</th>
+                            <th>Lead Source</th> 
+                            <th>Type</th>            
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <template for:each={oppData.data} for:item="items">
+                            <tr key={items.Id}>
+                                <td>
+                                    {items.Name}
+                                </td>
+                                <td>
+                                    {items.StageName}
+                                </td>
+                                <td>
+                                    {items.LeadSource}
+                                </td>
+                                <td>
+                                    {items.Type}
+                                </td>
+                                <td>
+                                    {items.Description}
+                                </td>
+                            
+                            </tr>
+     
+                        </template>
+                    </tbody>
+                    </table>
+    </lightning-card>
+    
+</template>

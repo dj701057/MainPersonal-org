@@ -1,0 +1,14 @@
+<apex:page controller="ShowAccountNameController" setup="false" sidebar="false" showHeader="true" tabStyle="Lead">
+  <apex:sectionHeader title="Accounts" subtitle="All Accounts"/>
+  <apex:form >
+      <apex:pageBlock title="Account Records">
+          <apex:pageBlockSection title="Account Records" columns="1" collapsible="true">
+              <apex:selectList label="Account Record Name" multiselect="false" size="1">
+                  <apex:selectOptions value="{!lstOptions}">
+                  
+                  </apex:selectOptions>
+              </apex:selectList>
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

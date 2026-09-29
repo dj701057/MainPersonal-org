@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Account List">
+        <div class="slds-p-around_xx-small">
+            <lightning-datatable
+                key-field="Id"
+                data={lstAccounts}
+                columns={lstColumns}
+                hide-checkbox-column="true"
+                onrowaction={handelRowAction}>
+                    
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+    
+</template>

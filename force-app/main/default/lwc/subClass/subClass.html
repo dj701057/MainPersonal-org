@@ -1,0 +1,17 @@
+<template>
+    <lightning-card  variant="Narrow"  
+        title="Account Records" icon-name="standard:record">
+        <h1>Account DataTable </h1>
+        <template if:true={accList}>
+            <lightning-datatable data={accList} columns={columns} key-field="Id" onclick={handleButton}>
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            {error}
+        </template>
+        <p class="slds-p-horizontal_small">
+            Click on Button To Get Account Record <br/>
+            <lightning-formatted-text value={message}></lightning-formatted-text>
+        </p>
+    </lightning-card>
+</template>

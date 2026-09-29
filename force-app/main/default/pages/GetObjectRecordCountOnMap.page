@@ -1,0 +1,20 @@
+<apex:page controller="GetAllObjectRecordCountOnMap">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="objectPicklist">Select an Object:</apex:outputLabel>
+                    <apex:selectList id="objectPicklist" value="{!selectedObject}" size="10" multiselect="true">
+                        <apex:selectOptions value="{!objectOptions}" />
+                        <apex:actionSupport event="onchange" action="{!updateRecordCount}" reRender="recordCountPanel" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection id="recordCountPanel">
+                <apex:outputPanel rendered="{!selectedObject != ''}">
+                    <apex:outputText value="Number of {!selectedObject} records: {!recordCount}" />
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

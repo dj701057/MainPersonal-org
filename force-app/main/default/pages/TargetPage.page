@@ -1,0 +1,10 @@
+<apex:page controller="TargetPageRedirectController" setup="false" sidebar="false" showHeader="true" tabStyle="Contact">
+     <apex:sectionHeader title="Page Redirection " subtitle="Source Page"/>
+     <apex:form >
+         <apex:pageBlock title="Source Page Block">
+             <apex:pageBlockButtons location="top">
+                 <apex:commandButton value="Previous Page" action="{!GotoPreviousPage}"/>
+             </apex:pageBlockButtons> 
+         </apex:pageBlock>
+     </apex:form>
+</apex:page>

@@ -1,0 +1,32 @@
+<aura:component controller="Acc_TemplateEditorCtrl"
+  implements="force:hasRecordId,flexipage:availableForAllPageTypes,force:appHostable"
+  access="global">
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <aura:attribute name="templateContent" type="String" default=""
+    access="global" />
+  <aura:attribute name="objects" type="String" default="" access="global" />
+  <aura:attribute name="vfHostURL" type="String" default="" access="global" />
+  <aura:attribute name="width" type="String" default="100%" access="global" />
+  <aura:attribute name="height" type="String" default="100vh" access="global" />
+
+  <div class="slds-is-relative">
+    <lightning:spinner variant="brand" alternativeText="{!v.processingMessage}"
+      class="{!(v.accProcessing? 'slds-show slds-is-fixed': 'slds-hide')}" />
+
+    <lightning:layout multipleRows="true">
+      <lightning:layoutItem size="12">
+        <aura:if isTrue="{!!empty(v.vfHostURL)}">
+          <iframe aura:id="vfFrame"
+            style="{!'border: 0; width: 100%; height:' + v.height}"
+            src="{!v.vfHostURL + '/apex/' + v.orgPrefix + 'Lib_templateEditor?vfHostURL=' + v.vfHostURL + '&amp;recordId=' + v.recordId + (empty(v.objects)? '': ('&amp;objects=' + v.objects))}" />
+        </aura:if>
+      </lightning:layoutItem>
+      <lightning:layoutItem size="12"
+        class="slds-text-align_center slds-p-vertical_x-small">
+        <!--<lightning:button variant="brand" label="{#$Label.c.Save}"
+          onclick="{!c.onSave}" disabled="{!v.accProcessing}" />-->
+      </lightning:layoutItem>
+    </lightning:layout>
+  </div>
+</aura:component>

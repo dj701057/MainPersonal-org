@@ -1,0 +1,12 @@
+<apex:page showHeader="false">
+    <apex:includeLightning />
+    <div id="lwccontainer"></div>
+    <script> 
+        $Lightning.use("c:AppForVf",function(){
+            $Lightning.createComponent("c:addressLwc",{},"lwccontainer",
+            function(cmp){
+                //do
+            });
+        });
+    </script>
+</apex:page>

@@ -1,0 +1,132 @@
+<template>
+    <lightning-card title="Data Comparison" variant="base">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="header">
+                <div class="input-group">
+                    <lightning-input
+                        label="Enter Order Number / Hnumber (H123-456)"
+                        name="searchInput"
+                        type="text"
+                        placeholder="Enter Order Number or Hnumber"
+                        value={searchValue}
+                        onchange={handleSearchInputChange}>
+                    </lightning-input>
+                </div>
+                <lightning-button
+                    label="Search"
+                    variant="brand"
+                    onclick={handleSearch} class="search-button">
+                </lightning-button>
+                <lightning-button
+                    label="Modify"
+                    variant="success"
+                    onclick={handleModify} class="modify-button">
+                </lightning-button>
+            </div>
+
+            <!-- Data Tables Section -->
+            <div class="data-tables">
+                <!-- Salesforce Data Table -->
+                <template if:true={salesforceData}>
+                    <div class="table-container salesforce-table">
+                        <h3 class="table-header"><b>Salesforce Data</b></h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Order Number</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template if:true={isSearchValueEmpty}>
+                                    <tr> 
+                                        <td colspan="5">Enter Order Number / Hnumber for Salesforce data.</td>
+                                    </tr>
+                                </template>
+                                <template if:false={isSearchValueEmpty}>
+                                    <template for:each={salesforceData} for:item="record">
+                                        <tr key={record.Id}>
+                                            <td>{record.Name}</td>
+                                            <td>{record.Email}</td>
+                                            <td>{record.Order_Number__c}</td>
+                                            <td>{record.BillingAddress}</td>
+                                        </tr>
+                                    </template>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+                <template if:false={salesforceData}>
+                    <p>No Salesforce data found.</p>
+                </template>
+
+                <!-- COM Data Table -->
+                <template if:true={comData}>
+                    <div class="table-container com-table">
+                        <h3 class="table-header"><b>COM Data</b></h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Order no</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template if:true={isSearchValueEmpty}>
+                                    <tr> 
+                                        <td colspan="5">Enter Order Number / Hnumber for COM data.</td>
+                                    </tr>
+                                </template>
+                                <template if:false={isSearchValueEmpty}>
+                                    <template for:each={comData} for:item="record">
+                                        <tr key={record.id}>
+                                            <td>{record.name}</td>
+                                            <td>{record.email}</td>
+                                            <td>{record.orderNumber}</td>
+                                            <td>{record.address}</td>
+                                        </tr>
+                                    </template>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+                <template if:false={comData}>
+                    <p>No COM data found.</p>
+                </template>
+
+                <!-- Data Comparison Table -->
+                <div class="table-container data-discrepancies">
+                    <h3 class="table-header"><b>Data Discrepancies</b></h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template if:true={comparisonResults}>
+                                <template for:each={comparisonResults} for:item="result">
+                                    <tr key={result.id}>
+                                        <td>{result.message}</td>
+                                    </tr>
+                                </template>
+                            </template>
+                            <template if:false={comparisonResults}>
+                                <tr>
+                                    <td colspan="2">No discrepancies found .</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>

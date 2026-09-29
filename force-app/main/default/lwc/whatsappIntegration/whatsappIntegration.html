@@ -1,0 +1,24 @@
+<template>
+    <lightning-card icon-name="standard:sms" title="Send WhatsApp Message">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-id-46">
+                <abbr class="slds-required" title="required"></abbr>Contact Number
+            </label>
+            <div class="slds-form-element__control">
+                <input type="Number" id="text-input-id-46" placeholder="Enter the Number" class="slds-input" />
+            </div>
+        </div>
+        <div class="slds-form-element" style="margin-top: 2rem;">
+            <label class="slds-form-element__label" for="text-input-id-46">
+                <abbr class="slds-required" title="required"></abbr>Message
+            </label>
+            <div class="slds-form-element__control">
+                <input type="text" id="text-input-id-47" placeholder="Enter Something to send" name="message"
+                    class="slds-input" value={message} onchange={onChangeHandler} />
+            </div>
+        </div>
+
+        <button class="slds-button slds-button_brand" style="margin-top: 2rem;" onclick={sendMessage}>Send</button>
+    </lightning-card>
+
+</template>

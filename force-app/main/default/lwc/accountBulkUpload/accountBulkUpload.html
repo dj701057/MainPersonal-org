@@ -1,0 +1,25 @@
+<template>
+    <div>
+        <lightning-card title="Bulk Account Upload by CSV" icon-name="action:new_account">
+            <div slot="actions">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12">
+                        <lightning-button label="Download Template" title="Download Template" 
+                        onclick= {Download} icon-name="utility:download" class="slds-m-around-medium"
+                        variant="brand" slot="actions"></lightning-button>
+                    </div>
+                </div>
+            </div>
+
+            <div slot="footer">
+                <lightning-button label="Cancel" title="Cancel" 
+                onclick= {Cancel} icon-name="utility:close" class="slds-m-around-medium"
+                variant="destructive" slot="actions"></lightning-button>
+            </div>
+
+            <div class="slds-p-horizontal_small slds-p-vertical_x-small slds-m-around_small">
+                <lightning-input type="file" multiple="false" accept=".csv" onchange={handleCsvUpload} required></lightning-input>
+            </div>
+        </lightning-card>
+    </div>
+</template>

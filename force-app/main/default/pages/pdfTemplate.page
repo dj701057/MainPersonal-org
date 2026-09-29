@@ -1,0 +1,10 @@
+<apex:page renderAs="pdf" standardController="Account">
+
+    <h1>Account Details</h1>
+
+    Dear {!account.Name}, <br/><br/>
+    Below are the Account details: <br/>
+    Type: {!account.Type} <br/>
+    Account Number: {!account.AccountNumber}
+
+</apex:page>

@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="User Type" icon-name="standard:user">
+        <Div class="slds-m-around_medium">
+            <template if:true={isRunReport}>
+                <div class="slds-m-vertical_medium">
+                    User has Permission to Run Reports..
+                </div>
+            </template>
+            <template if:false={isRunReport}>
+                <div class="slds-m-vertical_medium">
+                    User  do not have  Permission to Run Reports.
+                </div >
+            </template>
+        </Div>
+    </lightning-card>
+    
+</template>

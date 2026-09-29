@@ -1,0 +1,21 @@
+<apex:page sidebar="false" showHeader="false" id="PGCSS">
+    <apex:form style="border-style: double;border-style: double;border-color: green;">
+    	<apex:pageBlock >
+        	<apex:pageBlockSection >
+                <apex:outputLabel value="Enter Length" style="font-size:20px; color:blue;" />
+                <apex:inputText />
+                <apex:outputLabel value="Enter Length" style="font-size:20px; color:black;" />
+                <apex:inputText />
+                <!--Combine above two we have to use apex page block section item -->
+                <apex:pageBlockSection >
+                	<apex:outputLabel value="Enter Length" style="font-size:20px; color:blue;" />
+                    <apex:inputText />
+                </apex:pageBlockSection>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Enter Width" style="font-size:20px; color:black;" />
+                    <apex:inputText />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

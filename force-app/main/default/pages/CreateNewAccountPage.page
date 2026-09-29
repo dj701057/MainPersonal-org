@@ -1,0 +1,50 @@
+<apex:page setup="false" sidebar="false" standardController="Account" tabStyle="Account" showHeader="true">
+      <apex:sectionHeader title="Account Edit " subtitle="New Account"/>
+      <apex:form >
+      <apex:pageBlock title="Account Edit">
+          <apex:pageBlockButtons location="Both">
+                  <apex:commandButton value="Save" action="{!Save}"/>
+                  <apex:commandButton value="Save & New" action="{!Save}"/>
+                  <apex:commandButton value="Cancel" action="{!Cancel}"/>
+           </apex:pageBlockButtons>
+           <apex:pageBlockSection title="Account Information" collapsible="true" columns="2" >
+              <!-- <apex:pageBlockSectionItem >-->
+                 <apex:inputField value="{!Account.Name}" required="true"/>
+                 <apex:inputField value="{!Account.Rating}"/> 
+                 <apex:inputField value="{!Account.Phone}"/> 
+                 <apex:inputField value="{!Account.ParentId}"/>
+                 <apex:inputField value="{!Account.Fax}"/>
+                 <apex:inputField value="{!Account.Website}"/>
+                 <apex:inputField value="{!Account.Type }"/>
+                 <apex:inputField value="{!Account.Industry}"/>
+              <!-- </apex:pageBlockSectionItem>-->
+           </apex:pageBlockSection>
+           
+           <apex:pageBlockSection title="Address Information" collapsible="true" columns="2" >
+               <apex:inputField value="{!Account.BillingStreet}"/>
+               <apex:inputField value="{!Account.ShippingStreet}"/>
+               <apex:inputField value="{!Account.BillingCity}"/>
+               <apex:inputField value="{!Account.ShippingCity}"/> 
+               <apex:inputField value="{!Account.BillingState}"/>
+               <apex:inputField value="{!Account.ShippingState}"/> 
+               <apex:inputField value="{!Account.BillingPostalCode}"/>
+               <apex:inputField value="{!Account.ShippingPostalCode}"/>
+               <apex:inputField value="{!Account.BillingCountry}"/>
+               <apex:inputField value="{!Account.ShippingCountry}"/>
+           </apex:pageBlockSection> 
+           
+           <apex:pageBlockSection title="Additional Information" collapsible="true" columns="2" >
+               <apex:inputField value="{!Account.CustomerPriority__c}"/>
+               <apex:inputField value="{!Account.SLA__c}"/>
+               <apex:inputField value="{!Account.SLAExpirationDate__c}"/>
+               <apex:inputField value="{!Account.SLASerialNumber__c}"/>
+               <apex:inputField value="{!Account.NumberofLocations__c}"/>
+               <apex:inputField value="{!Account.UpsellOpportunity__c}"/>
+               <apex:inputField value="{!Account.Active__c}"/>
+           </apex:pageBlockSection>
+           <apex:pageBlockSection title="Description Information" collapsible="true"  >
+               <apex:inputField value="{!Account.description}"/>
+           </apex:pageBlockSection>                           
+      </apex:pageBlock>
+      </apex:form>
+</apex:page>

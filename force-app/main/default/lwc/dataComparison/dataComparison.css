@@ -1,0 +1,60 @@
+.container {
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+.search-input {
+    margin-right: 2px;
+}
+
+.search-button {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 12px;
+    
+}
+
+.modify-button {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 12px;
+}
+.data-tables {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.table-container {
+    width: 48%;
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.data-table th, .data-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.salesforce-table {
+    width: 40%; /* Fixed width for Salesforce Data table */
+}
+
+.com-table {
+    width: 40%; 
+}
+
+.data-discrepancies {
+    width: 20%; 
+}

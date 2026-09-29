@@ -1,0 +1,32 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="true"
+           standardController="Contact" applyHTmlTag="false">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:slds />
+        </head>
+        <body class="slds-scope">
+            
+            
+            <lightning-record-edit-form 
+    object-api-name="Contact">
+
+    <lightning-messages></lightning-messages>
+
+    <div class="slds-grid slds-gutters">
+
+        <lightning-input-address id="inputAddress"
+                                                
+                                                show-address-lookup="true"
+                                                address-label="Address"
+                                                street-label="Street"
+                                                city-label="City"
+                                                country-label="Country"
+                                                province-label="County"
+                                                postal-code-label="PostCode"
+        ></lightning-input-address>
+
+    </div>
+</lightning-record-edit-form>
+        </body>
+    </html>
+</apex:page>

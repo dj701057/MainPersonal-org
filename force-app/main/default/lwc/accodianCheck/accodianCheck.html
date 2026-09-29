@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Accounts" icon-name="standard:account">
+        <template if:true={accounts}>
+            <lightning-accordion class ="accordion-button::after accordion-button:not(.collapsed)::after" allow-multiple-sections-open="true">
+                <template for:each={accounts} for:item="account">
+                    <lightning-accordion-section class="slds-accordion__summary-action  lightning-primitive-icon slds-accordion__summary-action accordion-button::after  accordion-button:not(.collapsed)::after" 
+                        key={account.Id} 
+                        name={account.Id} 
+                        label={account.Name} >
+                        <div class="slds-m-around_medium">
+                            <p><strong>Industry:</strong> {account.Industry}</p>
+                            <p><strong>Phone:</strong> {account.Phone}</p>
+                            <p><strong>Type:</strong> {account.Type}</p>
+                        </div>
+                    </lightning-accordion-section>
+                </template>
+            </lightning-accordion>
+        </template>
+        <template if:false={accounts}>
+            <p class="slds-text-body_regular slds-p-around_medium">No account data available.</p>
+        </template>
+    </lightning-card>
+</template>

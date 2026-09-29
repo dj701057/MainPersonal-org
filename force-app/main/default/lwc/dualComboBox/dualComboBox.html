@@ -1,0 +1,21 @@
+<template>
+    <lightning-button
+        variant="brand"
+        label="Click to create record"
+        onclick={newRecord}
+        class="slds-m-around_large"
+    ></lightning-button>
+    <lightning-record-edit-form
+        if:true={showForm}>
+        <lightning-quick-action-panel
+            object-api-name="Account"
+            onsuccess={closeDialog}>
+        </lightning-quick-action-panel>
+        <lightning-button
+        class="slds-m-top_small"
+        type="submit"
+        label="Create new"
+    ></lightning-button>
+    </lightning-record-edit-form>
+    
+</template>

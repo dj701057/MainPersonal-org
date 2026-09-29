@@ -1,0 +1,21 @@
+<apex:page controller="BasicCalculatorPageController" setup="false" sidebar="false" showHeader="true">
+  <apex:sectionHeader title="Calculator" subtitle="Basic Calculator"/>
+  <apex:form >
+      <apex:pageBlock title="Basic Calculator Block">
+      <apex:pageBlockButtons location="Bottom">
+          <apex:commandButton value="Add" action="{!Add}" reRender="RefreshBuffer"/>
+          <apex:commandButton value="Sub" action="{!Sub}" reRender="RefreshBuffer"/>
+          <apex:commandButton value="Mul" action="{!Mul}" reRender="RefreshBuffer"/>
+          <apex:commandButton value="Div" action="{!Div}" reRender="RefreshBuffer"/>
+          <apex:commandButton value="Mod" action="{!Mod}" reRender="RefreshBuffer"/>
+      </apex:pageBlockButtons>
+          <apex:pageBlockSection title="Calculator section" columns="1" collapsible="true">
+             <apex:inputText label="Enter First Number" html-placeholder="Enter first Number Here" value="{!firstNumber}"/>
+             <apex:inputText label="Enter Second Number" html-placeholder="Enter Second Number Here" value="{!secondNumber}"/>
+             <apex:outputLabel id="RefreshBuffer" >
+                 <b>Operation Result is....: {!result}</b>
+             </apex:outputLabel>
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,20 @@
+<apex:page controller="XEIntegration">
+    <apex:form >
+        <apex:pageBlock title="Currency Conversion">
+            <apex:pageBlockSection columns="2">
+                <apex:inputText label="Currency From" value="{!selectCurrencyFrom}" />
+                <apex:inputText label="Currency To" value="{!selectCurrencyTo}" />
+                <apex:inputText label="Amount" value="{!amount}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Get Conversion" action="{!getExchangeRates}" rerender="outputPanel" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:outputPanel id="outputPanel">
+            {!responseBody}
+            <apex:pageBlock rendered="{!responseBody != ''}">
+                <apex:outputText value="Converted Amount: {!responseBody}" />
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

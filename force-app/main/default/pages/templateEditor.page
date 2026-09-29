@@ -1,0 +1,120 @@
+<apex:page showHeader="false" id="page" controller="Acc_TemplateEditorCtrl">
+  <script>
+    let selectedValue = "";
+    const objectsFieldsData = JSON.parse("{!JSENCODE(objectsFields)}");
+    //console.log(objectsFieldsData);
+
+    const lexOrigin = "{!JSENCODE(vfHostURL)}";
+    window.onload = function () {
+      CKEDITOR.config.toolbarCanCollapse = true;
+      CKEDITOR.config.allowedContent = true;
+      CKEDITOR.config.height = "75vh";
+      CKEDITOR.config.font_defaultLabel = "Salesforce Sans";
+      if ("{!language}" === "ar") {
+        CKEDITOR.config.font_defaultLabel = "Droid Kufi, Calibari";
+      }
+
+      /* CKEDITOR.config.font_style = {
+        element: 'span',
+        styles: { 'font-family ': '#(family),arial,sans-serif' },
+        overrides: [{ element: 'font', attributes: { 'face': null } }]
+      }; */
+      CKEDITOR.config.font_names = "Salesforce Sans;";
+      if ("{!language}" === "ar") {
+        CKEDITOR.config.font_names += "Droid Kufi, Calibri;";
+      }
+      CKEDITOR.config.font_names +=
+        "Arial;" +
+        "Comic Sans MS;" +
+        "Sakkal Majalla;" +
+        "Georgia;" +
+        "Helvetica;" +
+        "Times New Roman;" +
+        "Verdana;";
+      if ("{!language}" !== "ar") {
+        CKEDITOR.config.font_names += "Droid Kufi, Calibri;";
+      }
+      CKEDITOR.config.toolbarGroups = [
+        { name: "basicstyles", groups: ["basicstyles", "cleanup"] },
+        { name: "clipboard", groups: ["clipboard", "undo"] },
+        {
+          name: "editing",
+          groups: ["find", "selection", "spellchecker", "editing"]
+        },
+        "/",
+        { name: "links", groups: ["links"] },
+        {
+          name: "paragraph",
+          groups: ["list", "indent", "blocks", "align", "bidi", "paragraph"]
+        },
+        "/",
+        { name: "colors", groups: ["colors"] },
+        { name: "styles", groups: ["styles"] },
+        "/",
+        { name: "insert", groups: ["insert"] },
+        { name: "tools", groups: ["tools"] },
+        { name: "document", groups: ["doctools", "document", "mode"] },
+        { name: "forms", groups: ["forms"] },
+        { name: "others", groups: ["others"] },
+        { name: "about", groups: ["about"] }
+      ];
+      CKEDITOR.config.removeButtons =
+        "Flash,Iframe,NewPage,Save,Form,Checkbox,About,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField";
+      CKEDITOR.config.contentsCss = "";
+      CKEDITOR.on("instanceReady", function (event) {
+        var dataProcessor = event.editor.dataProcessor,
+          dataFilter = dataProcessor && dataProcessor.dataFilter,
+          htmlFilter = dataProcessor && dataProcessor.htmlFilter;
+
+        // This rewrites incoming (GET, viewing) data
+        if (dataFilter) {
+          dataFilter.addRules(rules);
+        }
+
+        if (htmlFilter) {
+          htmlFilter.addRules(rules);
+        }
+      });
+
+      const rules = {
+        elements: {
+          table: function (element) {
+            if (
+              element.attributes["class"] &&
+              element.attributes["class"].length === 0
+            ) {
+              element.attributes["class"] = "slds-table slds-table_cell-buffer";
+            }
+            return element;
+          },
+          strong: function (element) {
+            element.attributes["style"] = "font-weight: bold;";
+            return element;
+          }
+        }
+      };
+
+      CKEDITOR.replace("page:form:editor", {
+        language: "{!language}"
+      });
+
+      const extraPlugins = [];
+      if (objectsFieldsData.length > 0) {
+        extraPlugins.push("mergefields");
+      }
+      extraPlugins.push("tableoptions");
+      CKEDITOR.config.extraPlugins = extraPlugins;
+
+      CKEDITOR.instances["page:form:editor"].on("change", function () {
+        // console.log('In VF page: ', this.getData());
+        //console.log("length VF page", this.getData().length);
+        parent.postMessage(this.getData(), "*");
+      });
+    };
+  </script>
+
+  <apex:form id="form">
+    <apex:includescript value="{!URLFOR($Resource.CKEditor4, 'ckeditor.js')}" />
+    <apex:inputTextarea id="editor" value="{!templateContent}" richText="false" />
+  </apex:form>
+</apex:page>

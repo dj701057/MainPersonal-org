@@ -1,0 +1,10 @@
+<apex:page >
+    <script>
+        window.onbeforeunload = function() {
+            // Send request to Salesforce Apex endpoint
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/services/apexrest/updateCheckboxFields", true);
+            xhr.send();
+        }
+    </script>
+</apex:page>

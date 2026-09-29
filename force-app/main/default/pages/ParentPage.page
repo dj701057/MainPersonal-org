@@ -1,0 +1,4 @@
+<apex:page >
+    <apex:include pageName="portraitVSLandscape" />
+    <apex:include pageName="PvsL" />
+</apex:page>

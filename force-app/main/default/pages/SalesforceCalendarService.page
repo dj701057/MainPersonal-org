@@ -1,0 +1,12 @@
+<apex:page controller="NewConnectCalender" setup="false" sidebar="false" tabStyle="Account" showHeader="true">
+    <apex:sectionHeader title="Salesforce To Calendar" subtitle="Calendar Block"/>
+        <apex:form >
+          <apex:pageBlock title="Calendar Details">
+            <apex:pageBlockSection title="Calendar Record Details" collapsible="true">
+                <apex:inputText label="Enter Case Record :" html-placeholder="Enter Case Id" />
+                <apex:commandButton value="Search Details"  reRender="pgBlock"/>
+            </apex:pageBlockSection>
+         </apex:pageBlock>
+        </apex:form>
+ 
+</apex:page>

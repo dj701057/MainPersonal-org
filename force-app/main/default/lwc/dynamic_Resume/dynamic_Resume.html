@@ -1,0 +1,66 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-grid slds-einstein-header slds-card__header">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+              <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+                  <div class="slds-media__body">
+                      <h2 class="slds-truncate" title="Resume Builder">
+                          <a href="#" class="slds-card__header-link" title="Einstein (10+)">
+                             <span class="slds-text-heading_small">Resume Builder</span>
+                          </a>
+                        </h2>
+                    </div>
+                </div>
+              <div class="slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3"></div>
+            </header>
+        </div>
+        <!--Body-->
+        <h1>Hi</h1>
+        <div class="slds">
+            <template if:true={getShowContainer}>
+                <div class="slds-card__body slds-card__body_inner">
+                    <lightning-card>
+                        <div class="slds-m-around_medium">
+                            <h3 class="slds-align_absolute-center">
+                                 <strong style="color:#270086; font-size:20px;"> Create a resume that stands Out  </strong>
+                            </h3>
+                            <h3 class="slds-align_absolute-center">
+                                <strong style="color:#281e41; font-size:12px;"> Create a resume that perfectlly describe your skills and match job profile.  </strong>
+                           </h3>
+                            <br/>
+                            <lightning-button variant="brand" label="Get Started"  onclick={handleStart} class="slds-align_absolute-center"></lightning-button>
+                            <br/>
+                            <div class="slds-align_absolute-center">
+                                <img src={resumeLogoUrl}> 
+                            </div>
+                        </div>
+                    </lightning-card>
+                    <lightning-button label="Hide Container Data" variant="brand" size="small" onclick={hideContainerData} icon-name="utility:chevronup" icon-position="right"></lightning-button>   
+                </div>
+            </template>
+            <template if:false={getShowContainer}>
+                <lightning-button label="Show Container Data" variant="brand" size="small" onclick={showContainerData} icon-name="utility:chevrondown" icon-position="right"></lightning-button>
+            </template>
+                 <!--   <div  class="slds">
+                        <template if:true={getShowContainer}>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_3-of-12">					
+                                    <img src="https://www.w3web.net/wp-content/uploads/2020/12/contactsBasedAccountNameFeature.jpg" width="100%" height="auto"></img>
+                                </div> 
+                                <div class="slds-col slds-size_9-of-12">
+                                    <p><b>How to display account related contacts based on account name using search input and click button in Salesforce lightning web component – LWC</b></p><br/>
+                                <p>Hey guys, today in this post we are going to learn about How to display account related contacts based on account name using search input and click button in Salesforce lightning web component – LWC. Files we used in this post example: displayContactsOnAccountName.html Lightning Web Component HTML It is Templae HTML file for used to write HTML …</p><br/>                                                                  
+                                <p><span class="readMore"><a href="https://www.w3web.net/display-account-related-contacts-lwc/" target="_blank" rel="noopener noreferrer">Read more...</a></span></p>
+                                <br/><br/>
+                                <lightning-button label="Hide Container Data" variant="brand" size="small" onclick={hideContainerData} icon-name="utility:chevronup" icon-position="right"></lightning-button>   
+                               </div>
+                            </div>
+                           
+                        </template>
+                        <template if:false={getShowContainer}>
+                            <lightning-button label="Show Container Data" variant="brand" size="small" onclick={showContainerData} icon-name="utility:chevrondown" icon-position="right"></lightning-button>
+                        </template>
+                     </div>-->
+        </div>
+    </article>
+</template>

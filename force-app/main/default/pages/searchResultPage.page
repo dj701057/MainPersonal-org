@@ -1,0 +1,23 @@
+<apex:page controller="searchResultPageController" setup="false" sidebar="false" showHeader="true" tabStyle="Contact">
+     <apex:sectionHeader title="Search results" subtitle="search Lead Results"/>
+     <apex:form >
+         <apex:pageBlock title="search results :({!lstLeads.Size})">
+             <apex:pageBlockButtons location="top">
+                 <apex:commandButton value="Search Again!" action="{!GototSearchPage}"/>
+             </apex:pageBlockButtons>
+             
+             <apex:pageBlockTable value="{!lstLeads}" var="ld">
+                 <apex:column headerValue="Lead Name">
+                     <apex:outputLink value="/{!ld.id}" >{!ld.firstname} {!ld.lastname}</apex:outputLink>
+                 </apex:column>
+                 
+                 <apex:column value="{!ld.Rating}"/>
+                 <apex:column value="{!ld.Industry}"/>
+                 <apex:column value="{!ld.AnnualRevenue}"/>
+                 <apex:column value="{!ld.Title}"/>
+                 <apex:column value="{!ld.Phone}"/>
+                 <apex:column value="{!ld.Fax}"/>
+             </apex:pageBlockTable>
+         </apex:pageBlock>
+     </apex:form>
+</apex:page>

@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-modal__header"> 
+        <lightning-card  variant="Narrow"  title="Global Quarry Results Of Records" icon-name="standard:record">
+        </lightning-card>
+    </div>  
+    <!------Body Section-->  
+    <lightning-card title="Select the Object To Explore More" icon-name="custom:custom67">
+        <template if:true={profileOptionsList}>
+            <div class="slds-m-around_medium">
+                    <select onchange={handleProfileChange} data-id="selectId" class="slds-select selectProfileList" name="selectuser">
+                        <option value="">--None--</option>
+                        <template for:each={profileOptionsList} for:item="item">
+                            <option value={item.value} key={item.value}>{item.label}</option>
+                        </template>
+                      </select>               
+            </div>
+          </template>
+      </lightning-card>  
+</template>

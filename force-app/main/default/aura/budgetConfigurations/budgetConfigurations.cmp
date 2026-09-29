@@ -1,0 +1,171 @@
+<aura:component controller="budgetConfigurations" implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="userRecords" type="User[]" />
+    <aura:attribute name="months" type="String[]" default="['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar']"/>
+    <aura:attribute name="clientRatingOptions" type="List" default="[]" />
+    <aura:attribute name="tradeCategoryOptions" type="List" default="[]" />
+    <aura:attribute name="industryOptions" type="List" default="[]" />
+    <aura:attribute name="stateOptions" type="List" default="[]" />
+    <aura:attribute name="selectedUserId" type="String" />
+    <aura:attribute name="currencyValue" type="String" />
+    <aura:attribute name="startDate" type="Date" />
+    <aura:attribute name="finishDate" type="Date" />
+    <aura:attribute name="warningMessage" type="String" />
+    <aura:attribute name="rowsClientRating" type="List" default="[{}]"/>
+    <aura:attribute name="rowsTradeCategory" type="List" default="[{}]"/>
+    <aura:attribute name="rowsIndustry" type="List" default="[{}]"/>
+    <aura:attribute name="rowsState" type="List" default="[{}]"/>
+
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:card>
+        <lightning:layout horizontalAlign="space">
+            <lightning:layoutItem>            
+                <lightning:select name="selectItem" label="Owner Name/Customer Owner" variant="label-inline" aura:id="picklist" onchange="{!c.handlePicklistChange}">
+                    <option value="">None</option>
+                    <aura:iteration items="{!v.userRecords}" var="user">
+                        <option value="{!user.Id}"> {!user.Name} </option>
+                    </aura:iteration>
+                </lightning:select>
+            </lightning:layoutItem>
+            <lightning:layoutItem>
+                <lightning:input type="number" name="currency" label="Currency" value="{!v.currencyValue}" onchange="{!c.handleDateChange}" />
+            </lightning:layoutItem>
+            <lightning:layoutItem>
+                <lightning:input type="date" name="startDate" label="Start Date" value="{!v.startDate}" onchange="{!c.handleDateChange}" />
+            </lightning:layoutItem>
+            <lightning:layoutItem>
+                <lightning:input type="date" name="finishDate" label="Finish Date" value="{!v.finishDate}" onchange="{!c.handleDateChange}" />
+            </lightning:layoutItem>
+            <lightning:button class="slds-button slds-button_success" label="Save" onclick="{!c.handleSave}" />
+        </lightning:layout>
+        <aura:if isTrue="{!not(empty(v.warningMessage))}">
+            <div style="color:red;text-align: right;">{!v.warningMessage}</div>
+        </aura:if>	
+        
+        <div aura:id="tblData" >
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Details</th>
+                        <th style="text-align: center;">Apr</th>
+                        <th style="text-align: center;">May</th>
+                        <th style="text-align: center;">Jun</th>
+                        <th style="text-align: center;">Jul</th>
+                        <th style="text-align: center;">Aug</th>
+                        <th style="text-align: center;">Sep</th>
+                        <th style="text-align: center;">Oct</th>
+                        <th style="text-align: center;">Nov</th>
+                        <th style="text-align: center;">Dec</th>
+                        <th style="text-align: center;">Jan</th>
+                        <th style="text-align: center;">Feb</th>
+                        <th style="text-align: center;">Mar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr></tr>
+                </tbody>
+            </table>
+            
+            
+            <lightning:accordion aura:id="accordion" >
+                <lightning:accordionSection name="clientRating" label="Client Rating">
+                    <table>
+                        <tbody>
+    <aura:iteration items="{!v.rowsClientRating}" var="row" indexVar="index">
+        <tr>
+            <td>
+                <lightning:combobox name="selectItem" label="Client Rating"  options="{!v.clientRatingOptions}" onchange="{!c.handleClientRatingChange}" aura:id="{!'clientRating_' + index}" />
+            </td>
+            <aura:iteration items="{!v.months}" var="month">
+                <td>
+                    <lightning:input name="{!month}" type="number" placeholder="0" onchange="{!c.handleInputChange}"/>
+                </td>
+            </aura:iteration>
+            <td>               
+                <lightning:buttonIcon iconName="utility:add" variant="brand" alternativeText="Add" title="Add" onclick="{!c.addRowOnClientRating}" type="button" />
+            </td>
+        </tr>
+    </aura:iteration>                                  
+</tbody>
+
+                    </table>
+                </lightning:accordionSection>
+                <lightning:accordionSection name="tradeCategory" label="Trade Category">
+                    <table>
+                        <tbody>
+                            <aura:iteration items="{!v.rowsTradeCategory}" var="row" indexVar="index"> 
+                                <tr>
+                                    <td>
+                                        <lightning:select name="selectItem" label="Trade Category" variant="label-inline" aura:id="tradeCategory" onchange="{!c.handleTradeCategoryChange}">
+                                            <aura:iteration items="{!v.tradeCategoryOptions}" var="itr" indexVar="index">
+                                                <option value="{!itr}"> {!itr} </option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </td>
+                                    <aura:iteration items="{!v.months}" var="month">
+                                        <td>
+                                            <lightning:input name="{!month}" type="number" placeholder="0" onchange="{!c.handleInputChange}"/>
+                                        </td>
+                                    </aura:iteration>
+                                    <td>               
+                                        <lightning:buttonIcon iconName="utility:add" variant="brand" alternativeText="Add" title="Add" onclick="{!c.addRowOnTradeCategory}" />
+                                    </td>
+                                </tr>
+                            </aura:iteration>                              
+                        </tbody>
+                    </table>
+                </lightning:accordionSection>
+                <lightning:accordionSection name="industry" label="Industry">
+                    <table>
+                        <tbody>
+                            <aura:iteration items="{!v.rowsIndustry}" var="row" indexVar="index">
+                                <tr>
+                                    <td>
+                                        <lightning:select name="selectItem" label="Industry" variant="label-inline" aura:id="industry" onchange="{!c.handleIndustryChange}">
+                                            <aura:iteration items="{!v.industryOptions}" var="itr" indexVar="index">
+                                                <option value="{!itr}"> {!itr} </option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </td>
+                                    <aura:iteration items="{!v.months}" var="month">
+                                        <td>
+                                            <lightning:input name="{!month}" type="number" placeholder="0" onchange="{!c.handleInputChange}"/>
+                                        </td>
+                                    </aura:iteration>
+                                    <td>               
+                                        <lightning:buttonIcon iconName="utility:add" variant="brand" alternativeText="Add" title="Add" onclick="{!c.addRowOnIndustry}" />
+                                    </td>
+                                </tr>
+                            </aura:iteration>  
+                        </tbody>
+                    </table>
+                </lightning:accordionSection>
+                <lightning:accordionSection name="state" label="State">
+                    <table>
+                        <tbody>
+                            <aura:iteration items="{!v.rowsState}" var="row" indexVar="index">
+                                <tr>
+                                    <td>
+                                        <lightning:select name="selectItem" label="State" variant="label-inline" aura:id="state" onchange="{!c.handleStateChange}">
+                                            <aura:iteration items="{!v.stateOptions}" var="itr" indexVar="index">
+                                                <option value="{!itr}"> {!itr} </option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </td>
+                                    <aura:iteration items="{!v.months}" var="month">
+                                        <td>
+                                            <lightning:input name="{!month}" type="number" placeholder="0" value="{!month}" onchange="{!c.handleInputChange}"/>
+                                        </td>
+                                    </aura:iteration>
+                                    <td>               
+                                        <lightning:buttonIcon iconName="utility:add" variant="brand" alternativeText="Add" title="Add" onclick="{!c.addRowOnState}" />
+                                    </td>
+                                </tr> 
+                            </aura:iteration>  
+                        </tbody>
+                    </table>
+                </lightning:accordionSection>
+            </lightning:accordion>
+        </div>
+    </lightning:card>
+</aura:component>

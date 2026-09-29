@@ -1,0 +1,3 @@
+<apex:page controller="ChartController" renderAs="pdf">
+    <apex:image height="300px" width="550px" url="{!dynamicUrl}"/>
+</apex:page>

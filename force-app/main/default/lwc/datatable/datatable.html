@@ -1,0 +1,38 @@
+<template>
+<lightning-card title="Account Data Table" icon-name="standard:account">
+<div class="slds-var-p-around_medium lgc-bg">
+<label class="theme-switch">
+<input type="checkbox" class="theme-switch__checkbox" onchange={toggleMode}>
+<div class="theme-switch__container">
+<div class="theme-switch__clouds"></div>
+<div class="theme-switch__stars-container">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 55" fill="none">
+    <!-- ... (SVG content) ... -->
+</svg>
+</div>
+<div class="theme-switch__circle-container">
+<div class="theme-switch__sun-moon-container">
+    <div class="theme-switch__moon">
+        <div class="theme-switch__spot">
+                        <lightning-datatable
+key-field="Id"
+data={data}
+columns={columns}
+onrowselection={getSelectedName}
+hide-checkbox-column="true">
+</lightning-datatable>
+<div class="slds-m-top_medium">
+<lightning-button label="Previous" onclick={previousPage} disabled={isFirstPage}></lightning-button>
+<lightning-button label="Next" onclick={nextPage} disabled={isLastPage}></lightning-button>
+</div>
+        </div>
+        <div class="theme-switch__spot"></div>
+        <div class="theme-switch__spot"></div>
+    </div>
+</div>
+</div>
+</div>
+</label>
+</div>
+</lightning-card>
+</template>
