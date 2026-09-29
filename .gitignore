@@ -58,3 +58,6 @@ force-app/main/default/classes/Spoonacular.cls*
 force-app/main/default/classes/WhatsappIntegrationController.cls*
 force-app/main/default/classes/XEIntegration.cls*
 force-app/main/default/lwc/googleMap/googleMap.js
+
+# Nightly Apex test reports
+test-results/

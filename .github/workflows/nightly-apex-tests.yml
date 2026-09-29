@@ -1,0 +1,90 @@
+name: Nightly Apex Tests
+
+on:
+    schedule:
+        # 16:30 UTC = 22:00 IST
+        - cron: "30 16 * * *"
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: nightly-apex-tests
+    cancel-in-progress: false
+
+jobs:
+    apex-tests:
+        runs-on: ubuntu-latest
+        timeout-minutes: 120
+        env:
+            SF_INSTANCE_URL: ${{ vars.SF_INSTANCE_URL || 'https://login.salesforce.com' }}
+            REPORT_DIR: test-results
+        steps:
+            - uses: actions/checkout@v7
+
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: "24"
+
+            - name: Install Salesforce CLI
+              run: |
+                  for attempt in 1 2 3; do
+                    npm install --global @salesforce/cli@2.150.6 && exit 0
+                    echo "Install attempt $attempt failed, retrying in 30s"; sleep 30
+                  done
+                  exit 1
+
+            - name: Authenticate org
+              env:
+                  SF_JWT_CLIENT_ID: ${{ secrets.SF_JWT_CLIENT_ID }}
+                  SF_JWT_USERNAME: ${{ secrets.SF_JWT_USERNAME }}
+                  SF_JWT_PRIVATE_KEY: ${{ secrets.SF_JWT_PRIVATE_KEY }}
+              run: |
+                  for name in SF_JWT_CLIENT_ID SF_JWT_USERNAME SF_JWT_PRIVATE_KEY; do
+                    [ -n "${!name}" ] || { echo "::error::Secret $name is missing"; exit 1; }
+                  done
+                  printf '%s\n' "$SF_JWT_PRIVATE_KEY" > "$RUNNER_TEMP/server.key"
+                  for attempt in 1 2 3; do
+                    sf org login jwt \
+                      --client-id "$SF_JWT_CLIENT_ID" \
+                      --username "$SF_JWT_USERNAME" \
+                      --jwt-key-file "$RUNNER_TEMP/server.key" \
+                      --instance-url "$SF_INSTANCE_URL" \
+                      --alias personal-ci --set-default && break
+                    [ "$attempt" = 3 ] && { rm -f "$RUNNER_TEMP/server.key"; exit 1; }
+                    echo "Login attempt $attempt failed, retrying in 60s"; sleep 60
+                  done
+                  rm -f "$RUNNER_TEMP/server.key"
+
+            - name: Run all local Apex tests
+              id: tests
+              continue-on-error: true
+              run: |
+                  mkdir -p "$REPORT_DIR"
+                  # exit code 100 = tests failed; the report step decides the outcome
+                  sf apex run test \
+                    --test-level RunLocalTests \
+                    --code-coverage \
+                    --result-format json \
+                    --wait 90 \
+                    --target-org personal-ci \
+                    > "$REPORT_DIR/apex-test-result.json" || true
+                  python3 .github/ci/build-apex-report.py "$REPORT_DIR"
+
+            - name: Upload report
+              if: always()
+              uses: actions/upload-artifact@v7
+              with:
+                  name: apex-results-${{ github.run_number }}
+                  path: test-results/
+                  retention-days: 14
+
+            - name: Email report
+              if: always()
+              env:
+                  SMTP_CONNECTION_URL: ${{ secrets.SMTP_CONNECTION_URL }}
+                  SMTP_FROM: ${{ vars.SMTP_FROM }}
+                  DEV_TEAM_EMAILS: ${{ vars.DEV_TEAM_EMAILS }}
+                  REPORT_KIND: ${{ steps.tests.outcome == 'success' && 'success' || 'failure' }}
+              run: python3 .github/ci/send-apex-report-email.py "$REPORT_DIR"
